@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link class="nav__item" to="/">TODO</router-link>
+      <router-link class="nav__item" to="/done">DONE</router-link>
+
     </div>
     <router-view/>
   </div>
@@ -14,19 +15,47 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #ffffff;
+  background-color: #2c3e50;
+  width: 768px;
+  min-height: 768px;
+  border-radius: 10px;
+  margin: 50px auto;
 }
 
 #nav {
   padding: 30px;
+  background-color: #405871;
+  border-radius: 10px 10px 0 0;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 25px;
 
     &.router-link-exact-active {
-      color: #42b983;
+      background-color: #488e87;
     }
   }
 }
+
+.nav__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: 290px;
+  height: 60px;
+  border-radius: 10px;
+}
+
+.nav__item:hover {
+  background-color: #2c3e50;
+}
+
 </style>
