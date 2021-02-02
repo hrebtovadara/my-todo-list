@@ -1,11 +1,12 @@
 <template lang="pug">
-  #app
-    div.container
-      div.nav
-        h2 Ваши доски
-        router-link.nav__item(to="/home") главная
-        router-link.nav__item(to="/board") board
-      router-view
+#app
+  div.container
+    div.nav
+      h2 Ваши доски
+      router-link.nav__item(to="/home") главная
+      br
+      router-link.nav__item(to="/board") board
+    router-view
 </template>
 
 <script>
@@ -13,11 +14,6 @@ export default {
   data: () => ({
     wide: true
   }),
-  computed: {
-    boardList() {
-      return this.$store.state.data.boards
-    }
-  }
 }
 </script>
 
@@ -46,4 +42,5 @@ export default {
   box-shadow: 15px 0px 40px -25px #95a1c5
   padding: 30px 20px
   text-align: left
+  position: absolute
 </style>
