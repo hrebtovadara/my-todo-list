@@ -1,7 +1,7 @@
 <template lang="pug">
 #app
   div.container
-   Sidebar
+    Sidebar
     router-view
 </template>
 

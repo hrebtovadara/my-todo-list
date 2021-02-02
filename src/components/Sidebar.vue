@@ -1,7 +1,7 @@
 <template lang="pug">
 div.nav(:class="{wide}")
   h2(v-show="wide") Ваши доски
-  router-link.nav__item(to="/home") главная
+  router-link.nav__item(to="/") главная
   br
   router-link.nav__item(to="/board") board
   br
