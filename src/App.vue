@@ -1,17 +1,31 @@
 <template lang="pug">
-  div(id="app")
+  #app
     div.container
       div.nav
-        router-link.nav__item(to="/") TODO
+        h2 Ваши доски
+        router-link.nav__item(to="/home") главная
+        router-link.nav__item(to="/board") board
       router-view
 </template>
 
+<script>
+export default {
+  data: () => ({
+    wide: true
+  }),
+  computed: {
+    boardList() {
+      return this.$store.state.data.boards
+    }
+  }
+}
+</script>
+
 <style lang="sass">
-#app
-  background: linear-gradient(to top right, #b2b8fe, #e1c3f6, #fdd1e1)
+.app
   width: 100%
-  min-height: 100vh
-  padding: 10px 0
+  height: 100vh
+  padding: 10px
 
 .container
   font-family: Avenir, Helvetica, Arial, sans-serif
@@ -19,12 +33,17 @@
   -moz-osx-font-smoothing: grayscale
   text-align: center
   color: #95a1c5
-  width: 90%
-  min-height: 700px
-  margin: auto
+  width: 100%
+  min-height: 100vh
   border-radius: 10px
   background: linear-gradient(to right, #d7e4fe, #e9e3f8, #c7d1fe)
   box-shadow: 0px 8px 45px -1px #909cd1
-  padding: 30px
 
+.nav
+  width: 230px
+  min-height: 100vh
+  background-color: #fbfafa
+  box-shadow: 15px 0px 40px -25px #95a1c5
+  padding: 30px 20px
+  text-align: left
 </style>
