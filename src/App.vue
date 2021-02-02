@@ -1,16 +1,15 @@
 <template lang="pug">
 #app
   div.container
-    div.nav
-      h2 Ваши доски
-      router-link.nav__item(to="/home") главная
-      br
-      router-link.nav__item(to="/board") board
+   Sidebar
     router-view
 </template>
 
 <script>
+import Sidebar from "@/components/Sidebar";
+
 export default {
+  components: {Sidebar},
   data: () => ({
     wide: true
   }),
