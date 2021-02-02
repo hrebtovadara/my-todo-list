@@ -4,8 +4,6 @@ div.new-list.list
   input
   button Отмена
   button Добавить
-
-
 </template>
 
 <script>
