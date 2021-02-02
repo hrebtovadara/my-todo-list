@@ -1,6 +1,8 @@
 <template lang="pug">
 div
   p task
+  button change
+  button delete
 </template>
 
 <script>

@@ -1,6 +1,8 @@
 <template lang="pug">
 .list
   h2.list-title Ваш список
+  button change
+  button delete
   .list-contaner
     Task
     Task
@@ -23,10 +25,10 @@ export default {
 
 .list
   width: 300px
-  min-height: 200px
+  min-height: 100px
   background-color: #ffffff
   border-radius: 10px
-  margin: 40px
+  margin: 30px
   padding: 20px
   box-shadow: 0px 0px 40px -25px #95a1c5
 
