@@ -3,7 +3,7 @@ div.nav(:class="{wide}")
   h2(v-show="wide") Ваши доски
   router-link.nav__item(to="/") главная
   br
-  router-link.nav__item(to="/board") board
+  router-link.nav__item(v-for="link in $store.state.boards" :to="'/board/' + link.id") board
   br
 
   button(@click="wide=!wide") click

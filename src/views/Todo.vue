@@ -1,6 +1,6 @@
 <template lang="pug">
 div.board
-  p hello
+  p {{$route.params}}
   .board-container
     List(v-for="list in $store.state.boards" :key="list.id" :list="list")
     AddNewList

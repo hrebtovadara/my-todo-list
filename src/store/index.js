@@ -15,6 +15,11 @@ export default new Vuex.Store({
         id: 1,
         name: 'Досочка 1',
         icon: ''
+      },
+      {
+        id: 2,
+        name: 'Досочка 2',
+        icon: ''
       }
     ],
     cards: [
