@@ -2,7 +2,7 @@
 div.board
   p hello
   .board-container
-    List
+    List(v-for="list in $store.state.boards" :key="list.id" :list="list")
     AddNewList
 </template>
 

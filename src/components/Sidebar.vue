@@ -11,7 +11,7 @@ div.nav(:class="{wide}")
 <script>
 export default {
   data: () => ({
-    wide: true
+    wide: false
   }),
 }
 </script>

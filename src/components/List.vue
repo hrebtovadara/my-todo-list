@@ -1,13 +1,15 @@
 <template lang="pug">
 .list
-  h2.list-title Ваш список
+  h2.list-title {{list.name}}
   button change
   button delete
   .list-contaner
-    Task
-    Task
-    Task
-  button Добавить новую финтифлюшку
+    Task(v-for="task in taskList(list.id)" :key="task.id" :task="task")
+  button(v-show="!viewAdd" @click="viewAdd = true") Добавить новую финтифлюшку
+  .list-add(v-show="viewAdd")
+    input(placeholder="что день грядущий нам готовит")
+    button(@click="viewAdd = false") Отмена
+    button Добавить
 </template>
 
 <script>
@@ -15,9 +17,17 @@ import Task from '@/components/Task'
 
 export default {
   data: () => ({
-    wide: true
+    wide: true,
+    viewAdd: false
   }),
-  components: {Task}
+  computed: {
+    taskList() {
+      return (id => this.$store.state.tasks.filter(task => task.boardId == id))
+    }
+  },
+  components: {Task},
+  props: ['list'],
+
 }
 </script>
 
