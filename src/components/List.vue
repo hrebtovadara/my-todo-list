@@ -22,7 +22,7 @@ export default {
   }),
   computed: {
     taskList() {
-      return (id => this.$store.state.tasks.filter(task => task.boardId == id))
+      return (id => this.$store.state.tasks.filter(task => task.cardsId == id))
     }
   },
   components: {Task},

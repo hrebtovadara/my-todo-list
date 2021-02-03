@@ -5,6 +5,7 @@ div.nav(:class="{wide}")
   br
   router-link.nav__item(to="/board") board
   br
+
   button(@click="wide=!wide") click
 </template>
 

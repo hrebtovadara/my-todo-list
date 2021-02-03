@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     data: {
       countBoards: 2,
+      countCard: 2,
       countTasks: 5,
     },
     boards: [
@@ -16,28 +17,36 @@ export default new Vuex.Store({
         icon: ''
       }
     ],
+    cards: [
+      {
+        id: 1,
+        boardsId: 1,
+        name: 'Карточка 1',
+        icon: ''
+      }
+    ],
     tasks: [
       {
         id: 1,
-        boardId: 1,
+        cardsId: 1,
         text: 'погладить котика1',
         status: ' ',
       },
       {
         id: 2,
-        boardId: 1,
+        cardsId: 1,
         text: 'погладить котика2',
         status: ' ',
       },
       {
         id: 3,
-        boardId: 1,
+        cardsId: 1,
         text: 'погладить котика3',
         status: ' ',
       },
       {
         id: 4,
-        boardId: 2,
+        cardsId: 2,
         text: 'погладить котика',
         status: ' ',
       },
