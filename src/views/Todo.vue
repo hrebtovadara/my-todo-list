@@ -3,7 +3,7 @@ div.board
   p board {{$route.params.id}}
   .board-container
     List(v-for="list in Lists" :key="list.id" :list="list")
-    AddNewList
+    AddNewList(:boardId="$route.params.id")
 </template>
 
 <script>

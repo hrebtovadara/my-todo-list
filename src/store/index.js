@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     data: {
       countBoards: 2,
-      countCard: 3,
+      countLists: 3,
       countTasks: 5,
     },
     boards: [
@@ -66,16 +66,25 @@ export default new Vuex.Store({
   mutations: {
     addNewTask(state, payload) {
       state.tasks.push(payload)
-      state.data.countTasks = state.data.countTasks + 1
-      console.log(state.data.countTasks)
+      state.data.countTasks++
     },
     changeTask(state, {id, text}) {
-      console.log(id)
-      console.log(text)
       let index = state.tasks.findIndex(elem => elem.id === id)
       state.tasks[index].text = text
-      console.log(index)
-      console.log(state.tasks)
+    },
+    deleteTask(state, id) {
+      state.tasks.splice(state.tasks.findIndex(elem => elem.id === id), 1)
+    },
+    addNewList(state, payload) {
+      state.list.push(payload)
+      state.data.countLists++
+    },
+    changeList(state, {id, name}) {
+      let index = state.list.findIndex(elem => elem.id === id)
+      state.list[index].name = name
+    },
+    deleteList(state, id) {
+      state.list.splice(state.list.findIndex(elem => elem.id === id), 1)
     }
   },
   actions: {

@@ -3,7 +3,7 @@ div.task
   .task-view(v-show="!viewEdit")
     p.task__text {{task.text}}
     button.btn-icon(@click="viewEdit = true") change
-    button.btn-icon delete
+    button.btn-icon(@click="$store.commit('deleteTask', task.id)") delete
   .task-edit(v-show="viewEdit")
     input(:value="task.text" @change="text = $event.target.value")
     button(@click="changeTextTask(task.id)") сохранить

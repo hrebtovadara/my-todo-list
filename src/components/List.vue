@@ -1,13 +1,13 @@
 <template lang="pug">
 .list
-  button delete
+  button(@click="$store.commit('deleteList', list.id)") delete
   button(@click="viewChangeTitle = true") change
   .list-title(v-show="!viewChangeTitle")
     h2 {{list.name}}
   .list-change__title(v-show="viewChangeTitle")
-    input(placeholder="изменить название")
+    input( :value="list.name" @change="nameList = $event.target.value")
     button(@click="viewChangeTitle = false") Отмена
-    button Добавить
+    button(@click="changeNameList(list.id)") Добавить
   .list-contaner
     Task(v-for="task in taskList(list.id)" :key="task.id" :task="task")
   button(v-show="!viewAdd" @click="viewAdd = true") Добавить новую финтифлюшку
@@ -31,6 +31,7 @@ export default {
       text: '',
       status: '',
     },
+    nameList: ''
   }),
   computed: {
     taskList() {
@@ -47,6 +48,10 @@ export default {
       this.$store.commit('addNewTask', {...this.newTask})
       this.newTask.text = ''
       this.viewAdd = false
+    },
+    changeNameList(id) {
+      this.$store.commit('changeList', {id, name: this.nameList})
+      this.viewChangeTitle = false
     }
   }
 
