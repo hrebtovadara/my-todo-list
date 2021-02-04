@@ -4,7 +4,7 @@ div.new-list.list
   button(v-show="!viewAdd" @click="viewAdd = true") создать
   .new-list__add(v-show="viewAdd")
     input(placeholder="введите название нового списка задач")
-    button(@click="viewAdd = false") Отмена
+    button(@click="viewAdd = false") Отменаdd
     button Добавить
 </template>
 
