@@ -1,11 +1,11 @@
 <template lang="pug">
 div.new-list.list
   h2.list-title Добавить новый список
-  button(v-show="!viewAdd" @click="viewAdd = true") создать
+  button.btn.btn--create(v-show="!viewAdd" @click="viewAdd = true") создать
   .new-list__add(v-show="viewAdd")
     input(placeholder="введите название нового списка задач" v-model="newList.name")
-    button(@click="viewAdd = false") Отмена
-    button(@click="addNewList(boardId)") Добавить
+    button.btn.btn--cancel(@click="viewAdd = false") Отмена
+    button.btn.btn--add(@click="addNewList(boardId)") Добавить
 </template>
 
 <script>

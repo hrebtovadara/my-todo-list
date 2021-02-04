@@ -1,7 +1,7 @@
 <template lang="pug">
 div.board
-  p board {{$route.params.id}}
-  .board-container
+  p.board__title {{boardName.name}}
+  .board__container
     List(v-for="list in Lists" :key="list.id" :list="list")
     AddNewList(:boardId="$route.params.id")
 </template>
@@ -17,6 +17,9 @@ export default {
   computed: {
     Lists() {
       return this.$store.state.list.filter(elem => elem.boardsId == this.$route.params.id)
+    },
+    boardName() {
+      return  this.$store.state.boards.find(elem => elem.id = this.$route.params.id)
     }
   }
 }
@@ -26,9 +29,12 @@ export default {
 .board
   padding: 45px 90px
 
-  &-container
+  &__container
     display: flex
     align-items: flex-start
     flex-wrap: wrap
+
+  &__title
+    text-transform: uppercase
 
 </style>

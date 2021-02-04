@@ -1,20 +1,20 @@
 <template lang="pug">
 .list
-  button(@click="$store.commit('deleteList', list.id)") delete
-  button(@click="viewChangeTitle = true") change
-  .list-title(v-show="!viewChangeTitle")
+  button.list-btn.btn-icon.btn-icon--del(@click="$store.commit('deleteList', list.id)") delete
+  button.list-btn.btn-icon.btn-icon--change(@click="viewChangeTitle = true") change
+  .list__title(v-show="!viewChangeTitle")
     h2 {{list.name}}
-  .list-change__title(v-show="viewChangeTitle")
+  .list__title-change(v-show="viewChangeTitle")
     input( :value="list.name" @change="nameList = $event.target.value")
-    button(@click="viewChangeTitle = false") Отмена
-    button(@click="changeNameList(list.id)") Добавить
-  .list-contaner
+    button.btn.btn--cancel(@click="viewChangeTitle = false") Отмена
+    button.btn.btn--add(@click="changeNameList(list.id)") Добавить
+  .list__task
     Task(v-for="task in taskList(list.id)" :key="task.id" :task="task")
   button(v-show="!viewAdd" @click="viewAdd = true") Добавить новую финтифлюшку
-  .list-add(v-show="viewAdd")
+  .list__task-add(v-show="viewAdd")
     input(placeholder="что день грядущий нам готовит" v-model="newTask.text")
-    button(@click="viewAdd = false") Отмена
-    button(@click="addNewTask(list.id)") Добавить
+    button.btn.btn--cancel(@click="viewAdd = false") Отмена
+    button.btn.btn--add(@click="addNewTask(list.id)") Добавить
 </template>
 
 <script>
@@ -59,7 +59,6 @@ export default {
 </script>
 
 <style lang="sass">
-
 .list
   width: 300px
   min-height: 100px
