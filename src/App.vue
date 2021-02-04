@@ -33,12 +33,4 @@ export default {
   background: linear-gradient(to right, #d7e4fe, #e9e3f8, #c7d1fe)
   box-shadow: 0px 8px 45px -1px #909cd1
 
-.nav
-  width: 230px
-  min-height: 100vh
-  background-color: #fbfafa
-  box-shadow: 15px 0px 40px -25px #95a1c5
-  padding: 30px 20px
-  text-align: left
-  position: absolute
 </style>

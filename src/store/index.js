@@ -13,13 +13,13 @@ export default new Vuex.Store({
     boards: [
       {
         id: 1,
-        name: 'Досочка 1',
-        icon: ''
+        name: 'кошатники',
+        color: '#f1e1eb'
       },
       {
         id: 2,
-        name: 'Досочка 2',
-        icon: ''
+        name: 'собачники',
+        color: '#c5c3f1'
       }
     ],
     list: [
