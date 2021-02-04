@@ -5,17 +5,24 @@ div.task
     button.btn-icon(@click="viewEdit = true") change
     button.btn-icon delete
   .task-edit(v-show="viewEdit")
-    input(:value="task.text")
-    button сохранить
+    input(:value="task.text" @change="text = $event.target.value")
+    button(@click="changeTextTask(task.id)") сохранить
     button(@click="viewEdit = false") отмена
 </template>
 
 <script>
 export default {
   data: () => ({
-    viewEdit: false
+    viewEdit: false,
+    text: ''
   }),
-  props: ['task']
+  props: ['task'],
+  methods: {
+    changeTextTask(id) {
+      this.$store.commit('changeTask', {id, text: this.text})
+      this.viewEdit = false
+    }
+  }
 
 }
 </script>

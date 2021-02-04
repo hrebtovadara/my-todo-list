@@ -1,8 +1,8 @@
 <template lang="pug">
 div.board
-  p {{$route.params}}
+  p board {{$route.params.id}}
   .board-container
-    List(v-for="list in $store.state.boards" :key="list.id" :list="list")
+    List(v-for="list in Lists" :key="list.id" :list="list")
     AddNewList
 </template>
 
@@ -14,6 +14,11 @@ export default {
   data: () => ({
   }),
   components: {List, AddNewList},
+  computed: {
+    Lists() {
+      return this.$store.state.list.filter(elem => elem.boardsId == this.$route.params.id)
+    }
+  }
 }
 </script>
 
