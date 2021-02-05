@@ -19,7 +19,7 @@ export default {
       return this.$store.state.list.filter(elem => elem.boardsId == this.$route.params.id)
     },
     boardName() {
-      return  this.$store.state.boards.find(elem => elem.id = this.$route.params.id)
+      return this.$store.state.boards.find(elem => elem.id == this.$route.params.id)
     }
   }
 }
