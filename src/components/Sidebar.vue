@@ -35,6 +35,7 @@ export default {
   align-items: flex-start
   justify-content: space-between
 
+
   &__container
     display: flex
     flex-direction: column

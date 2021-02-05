@@ -1,13 +1,13 @@
 <template lang="pug">
 div.task
-  .task-view(v-show="!viewEdit")
+  .task__view(v-show="!viewEdit")
     p.task__text {{task.text}}
-    button.btn-icon.btn-icon--change(@click="viewEdit = true") change
-    button.btn-icon.btn-icon--del(@click="$store.commit('deleteTask', task.id)") delete
+    button.btn-icon.btn-icon--change(@click="viewEdit = true") ch
+    button.btn-icon.btn-icon--del(@click="$store.commit('deleteTask', task.id)") d
   .task-edit(v-show="viewEdit")
-    input(:value="task.text" @change="text = $event.target.value")
-    button.btn(@click="changeTextTask(task.id)") сохранить
-    button.btn(@click="viewEdit = false") отмена
+    input.input(:value="task.text" @change="text = $event.target.value")
+    button.btn(@click="changeTextTask(task.id)") сох
+    button.btn(@click="viewEdit = false") от
 </template>
 
 <script>

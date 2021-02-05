@@ -1,20 +1,20 @@
 <template lang="pug">
 .list
-  button.list-btn.btn-icon.btn-icon--del(@click="$store.commit('deleteList', list.id)") delete
-  button.list-btn.btn-icon.btn-icon--change(@click="viewChangeTitle = true") change
+  button.list__btn.btn-icon.btn-icon--del(@click="$store.commit('deleteList', list.id)" ) d
+  button.list__btn.btn-icon.btn-icon--change(@click="viewChangeTitle = true") c
   .list__title(v-show="!viewChangeTitle")
-    h2 {{list.name}}
+    h2.list__title {{list.name}}
   .list__title-change(v-show="viewChangeTitle")
-    input( :value="list.name" @change="nameList = $event.target.value")
-    button.btn.btn--cancel(@click="viewChangeTitle = false") Отмена
-    button.btn.btn--add(@click="changeNameList(list.id)") Добавить
+    input.input( :value="list.name" @change="nameList = $event.target.value")
+    button.btn.btn--cancel(@click="viewChangeTitle = false") Отм
+    button.btn.btn--add(@click="changeNameList(list.id)") Доб
   .list__task
     Task(v-for="task in taskList(list.id)" :key="task.id" :task="task")
-  button(v-show="!viewAdd" @click="viewAdd = true") Добавить новую финтифлюшку
+  button.btn-add(v-show="!viewAdd" @click="viewAdd = true") Доб
   .list__task-add(v-show="viewAdd")
     input(placeholder="что день грядущий нам готовит" v-model="newTask.text")
-    button.btn.btn--cancel(@click="viewAdd = false") Отмена
-    button.btn.btn--add(@click="addNewTask(list.id)") Добавить
+    button.btn.btn--cancel(@click="viewAdd = false") Отм
+    button.btn.btn--add(@click="addNewTask(list.id)") Доб
 </template>
 
 <script>
