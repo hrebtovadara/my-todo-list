@@ -31,7 +31,7 @@ export default {
 <style scoped lang="sass">
 .task
   border-radius: 5px
-  border: 2px solid #e3e3e3
+  border: 1px solid #e3e3e3
   margin: 10px 0
   &__view
     display: flex
