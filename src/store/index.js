@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     data: {
-      countBoards: 2,
+      countBoards: 3,
       countLists: 3,
       countTasks: 5,
     },
@@ -85,10 +85,13 @@ export default new Vuex.Store({
     },
     deleteList(state, id) {
       state.list.splice(state.list.findIndex(elem => elem.id === id), 1)
+    },
+    addNewBoard(state, payload) {
+      state.boards.push(payload)
+      state.data.countBoards++
     }
   },
   actions: {
-
   },
   modules: {
   },

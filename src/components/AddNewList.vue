@@ -1,6 +1,6 @@
 <template lang="pug">
 div.new-list.list
-  h2.list-title Добавить новый список
+  h2.list__title Добавить новый список
   button.btn.btn--create(v-show="!viewAdd" @click="viewAdd = true") создать
   .new-list__add(v-show="viewAdd")
     input(placeholder="введите название нового списка задач" v-model="newList.name")
