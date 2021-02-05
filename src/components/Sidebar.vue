@@ -4,6 +4,7 @@ div.nav(:class="{wide}")
     h2.nav__title(v-show="wide") Your cards
     router-link.nav__item.nav__item--home(to="/home") Home
     router-link.nav__item.nav__item--board(v-for="board in $store.state.boards" :to="'/board/' + board.id" :style="'backgroundColor :'+  board.color") {{board.name | notWide(wide)}}
+    input.input-board
     button(@click="newBoardView = true") добавить доску
   button.nav__wide(@click="wide=!wide") click
   newBoard(v-if="newBoardView" @closePopup="closePopup")
@@ -35,7 +36,7 @@ export default {
   width: 230px
   min-height: 100vh
   background-color: #fbfafa
-  box-shadow: 15px 0px 40px -25px c
+  box-shadow: 15px 0px 40px -25px
   padding: 100px 20px 60px
   text-align: left
   position: absolute
@@ -44,7 +45,7 @@ export default {
   flex-direction: column
   align-items: flex-start
   justify-content: space-between
-
+  z-index: 2
 
   &__container
     display: flex

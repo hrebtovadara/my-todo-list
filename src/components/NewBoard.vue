@@ -34,7 +34,7 @@ export default {
   left: 0
   right: 0
   margin: 0 auto
-  z-index: 2
+  z-index: 3
   width: 300px
   height: 300px
   background-color: white
