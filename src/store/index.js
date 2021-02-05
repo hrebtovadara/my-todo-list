@@ -89,6 +89,11 @@ export default new Vuex.Store({
     addNewBoard(state, payload) {
       state.boards.push(payload)
       state.data.countBoards++
+    },
+    changeNameBoard(state, {id, name}) {
+      let index = state.boards.findIndex(elem => elem.id === id)
+      state.boards[index].name = name
+
     }
   },
   actions: {
