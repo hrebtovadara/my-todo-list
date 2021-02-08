@@ -1,10 +1,10 @@
 <template lang="pug">
 .list
-  .list__btn
+  .list__btn.btn-view
     button.btn-icon.btn-icon--change(@click="viewChangeTitle = true" title="change list")
     button.btn-icon.btn-icon--close(@click="$store.commit('deleteList', list.id)" title="delete list")
   .list__title(v-show="!viewChangeTitle")
-    h2 {{list.name}}
+    p {{list.name}}
   .list__title-change(v-show="viewChangeTitle")
     input.input( :value="list.name" @change="nameList = $event.target.value")
     button.btn.btn--cancel(@click="viewChangeTitle = false") Отм
@@ -67,22 +67,26 @@ export default {
   background-color: #ffffff
   border-radius: 5px
   margin: 30px
-  padding: 10px 20px 20px
+  padding: 30px 20px 30px
   box-shadow: 0px 0px 40px -25px #95a1c5
   position: relative
+  color: #1f233c
 
   &__btn
     position: absolute
     top: 10px
-    right: 25px
+    right: 10px
 
   &__title
     font-size: 17px
-    padding: 5px
+    padding: 10px 0 20px
     text-align: left
+    position: relative
+    border-bottom: 1px solid #e7e7e7
 
   &__task
     width: 260px
+    border-bottom: 1px solid #e7e7e7
 
 .list__btn-add
   display: flex

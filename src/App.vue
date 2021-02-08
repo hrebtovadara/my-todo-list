@@ -29,7 +29,7 @@ export default {
   width: 100%
   min-height: 100vh
   border-radius: 10px
-  background: linear-gradient(to right, #d7e4fe, #e9e3f8, #c7d1fe)
+  background-color: #f6f7fb
   box-shadow: 0px 8px 45px -1px #909cd1
 
 </style>

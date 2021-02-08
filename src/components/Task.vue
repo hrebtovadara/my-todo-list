@@ -1,6 +1,6 @@
 <template lang="pug">
-div.task
-  .task__view(v-show="!viewEdit")
+div.task(:class="{'btn-view': viewbutton}" @mouseenter="viewbutton=true" @mouseleave="viewbutton=false")
+  .task__view(v-show="!viewEdit" )
     p.task__text {{task.text}}
     .bnt-container
       button.btn-icon.btn-icon--change(@click="viewEdit = true" title="change")
@@ -15,7 +15,8 @@ div.task
 export default {
   data: () => ({
     viewEdit: false,
-    text: ''
+    text: '',
+    viewbutton: false,
   }),
   props: ['task'],
   methods: {
@@ -30,14 +31,31 @@ export default {
 
 <style scoped lang="sass">
 .task
-  border-radius: 5px
+  border-radius: 3px
   border: 1px solid #e3e3e3
-  margin: 10px 0
+  margin: 20px 0
+  background-color: #ffffff
+  color: #1f233c
+  padding: 20px 15px
+  text-align: left
+  position: relative
+  &:hover
+    box-shadow: 0px 4px 16px -10px #000000
   &__view
     display: flex
     align-items: center
     justify-content: space-between
-    height: 40px
+    min-height: 30px
     padding: 5px
+
+  &__text
+    font-size: 14px
+    width: 228px
+
+.bnt-container
+  position: absolute
+  top: 5px
+  right: 5px
+
 
 </style>

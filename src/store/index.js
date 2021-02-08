@@ -13,12 +13,12 @@ export default new Vuex.Store({
     boards: [
       {
         id: 1,
-        name: 'кошатники',
+        name: 'Эльфы Средиземья',
         color: '#f1e1eb'
       },
       {
         id: 2,
-        name: 'собачники',
+        name: 'asdfg',
         color: '#c5c3f1'
       }
     ],
@@ -26,7 +26,7 @@ export default new Vuex.Store({
       {
         id: 1,
         boardsId: 1,
-        name: 'Карточка 1',
+        name: 'Дела Леголаса',
         icon: ''
       },
       {
@@ -40,25 +40,31 @@ export default new Vuex.Store({
       {
         id: 1,
         listId: 1,
-        text: 'таск 1',
+        text: 'Принять участие в совете в Ривенделле',
         status: ' ',
       },
       {
         id: 2,
         listId: 1,
-        text: 'таск 2',
+        text: 'Помочь Фродо',
         status: ' ',
       },
       {
         id: 3,
         listId: 1,
-        text: 'таск 3',
+        text: 'Найти и спасти Мерри и Пиппина',
+        status: ' ',
+      },
+      {
+        id: 4,
+        listId: 1,
+        text: 'Принять участие в Битве у Хельмовой Пади',
         status: ' ',
       },
       {
         id: 4,
         listId: 2,
-        text: 'погладить котика',
+        text: 'ыффпварпро',
         status: ' ',
       },
     ]

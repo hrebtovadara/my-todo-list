@@ -1,12 +1,12 @@
 <template lang="pug">
 div.board
-  div(v-if="!viewChangeBoard")
+  .board-title(v-if="!viewChangeBoard" :class="{'btn-view': viewbutton}" @mouseenter="viewbutton=true" @mouseleave="viewbutton=false")
     p.board__title {{boardName.name}}
-    button(@click="viewChangeBoard = true") изменить
-  .board-change(v-if="viewChangeBoard")
-    input.input(:value="boardName.name" @change="nameBoard = $event.target.value")
-    button.btn.btn--cancel(@click="viewChangeBoard = false") Отм
-    button.btn.btn--add(@click="changeNameBoard(boardName.id)") Доб
+    button.btn-icon.btn-icon--change(@click="viewChangeBoard = true")
+  .board-change.btn-view(v-if="viewChangeBoard")
+    input.input-self(:value="(boardName.name).toUpperCase()" @change="nameBoard = $event.target.value")
+    button.btn-icon.btn-icon--close(@click="viewChangeBoard = false")
+    button.btn-icon.btn-icon--check(@click="changeNameBoard(boardName.id)")
   .board__container
     List(v-for="list in Lists" :key="list.id" :list="list")
     AddNewList(:boardId="$route.params.id")
@@ -19,7 +19,8 @@ import AddNewList from "@/components/AddNewList";
 export default {
   data: () => ({
     viewChangeBoard: false,
-    nameBoard: ''
+    nameBoard: '',
+    viewbutton: false
   }),
   components: {List, AddNewList},
   computed: {
@@ -50,9 +51,16 @@ export default {
 
   &__title
     text-transform: uppercase
+    font-size: 20px
+    margin-right: 10px
 
 .board-change
-  width: 300px
   margin: 0 auto
-
+  display: flex
+  align-items: center
+  justify-content: center
+.board-title
+  display: flex
+  align-items: center
+  justify-content: center
 </style>

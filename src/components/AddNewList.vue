@@ -1,11 +1,12 @@
 <template lang="pug">
 div.new-list.list
-  h2.list__title Добавить новый список
+  p.list__title Добавить новый список
   button.btn.btn--create(v-show="!viewAdd" @click="viewAdd = true") создать
   .new-list__add(v-show="viewAdd")
-    input(placeholder="введите название нового списка задач" v-model="newList.name")
-    button.btn.btn--cancel(@click="viewAdd = false") Отмена
-    button.btn.btn--add(@click="addNewList(boardId)") Добавить
+    input.input(placeholder="введите название нового списка задач" v-model="newList.name")
+    .list__btn-add
+      button.btn.btn--cancel(@click="viewAdd = false") Отмена
+      button.btn.btn--add(@click="addNewList(boardId)") Добавить
 </template>
 
 <script>
@@ -35,6 +36,8 @@ export default {
 </script>
 
 <style lang="sass">
-
+.new-list
+  & .list__title
+    text-align: center
 
 </style>
