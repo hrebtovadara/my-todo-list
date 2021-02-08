@@ -1,9 +1,9 @@
 <template lang="pug">
 div.new-list.list
   p.list__title Добавить новый список
-  button.btn.btn--create(v-show="!viewAdd" @click="viewAdd = true") создать
+  button.btn.btn--create(v-show="!viewAdd" @click="openAddList") создать
   .new-list__add(v-show="viewAdd")
-    textarea.input(placeholder="введите название нового списка задач" v-model="newList.name")
+    textarea.input.input__list(v-model="newList.name" @blur="blur($event)" ref="textarea3")
     .list__btn-add
       button.btn.btn--cancel(@click="viewAdd = false") Отмена
       button.btn.btn--add(@click="addNewList(boardId)") Добавить
@@ -30,6 +30,13 @@ export default {
       this.$store.commit('addNewList', {...this.newList})
       this.newList.name = ''
       this.viewAdd = false
+    },
+    openAddList() {
+      setTimeout(()=>  this.$refs.textarea3.focus(), 10)
+      this.viewAdd = true
+    },
+    blur(e) {
+      if (!e.relatedTarget || !e.relatedTarget.classList.contains('input__list')) this.viewAdd = false
     }
   }
 }

@@ -3,12 +3,12 @@ div.task
   .task__view(v-show="!viewEdit" )
     p.task__text {{task.text}}
     .bnt-container
-      button.btn-icon.btn-icon--change(@click="viewEdit = true" title="change")
+      button.btn-icon.btn-icon--change(@click="openChangeTask()" title="change")
       button.btn-icon.btn-icon--del(@click="$store.commit('deleteTask', task.id)" title="delete")
   .task-edit(v-show="viewEdit")
-    textarea.input.input__task(:value="task.text" @change="text = $event.target.value" @blur="viewEdit=false")
+    textarea.input.input__task(:value="task.text" @change="text = $event.target.value" @blur="blur($event)" ref="textarea" autofocus)
     .task__btn-change
-      button.btn-icon.btn-icon--check(@click="changeTextTask(task.id)" )
+      button.btn-icon.btn-icon--check(@click.self="changeTextTask(task.id)" )
       button.btn-icon.btn-icon--close(@click="viewEdit = false")
 </template>
 
@@ -21,9 +21,16 @@ export default {
   }),
   props: ['task'],
   methods: {
+    openChangeTask() {
+      setTimeout(()=>  this.$refs.textarea.focus(), 10)
+      this.viewEdit = true
+    },
     changeTextTask(id) {
       this.$store.commit('changeTask', {id, text: this.text})
       this.viewEdit = false
+    },
+    blur(e) {
+      if (!e.relatedTarget || !e.relatedTarget.classList.contains('btn-icon--check')) this.viewEdit = false
     }
   }
 

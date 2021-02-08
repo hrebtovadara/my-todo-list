@@ -4,7 +4,7 @@ div.board
     p.board__title {{boardName.name}}
     button.btn-icon.btn-icon--change(@click="viewChangeBoard = true")
   .board-change.opacity-btn(v-if="viewChangeBoard")
-    textarea.input-self(:value="(boardName.name).toUpperCase()" @change="nameBoard = $event.target.value")
+    textarea.input-self.input-self--board(:value="(boardName.name).toUpperCase()" @change="nameBoard = $event.target.value"  :cols="nameBoard.length")
     button.btn-icon.btn-icon--check(@click="changeNameBoard(boardName.id)")
     button.btn-icon.btn-icon--close(@click="viewChangeBoard = false")
   .board__container
@@ -53,6 +53,9 @@ export default {
     text-transform: uppercase
     font-size: 20px
     margin-right: 10px
+    height: 30px
+    display: flex
+    align-items: center
 
 .board-change
   margin: 0 auto

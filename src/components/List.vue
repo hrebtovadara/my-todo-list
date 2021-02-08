@@ -5,15 +5,15 @@
     button.btn-icon.btn-icon--close(@click="$store.commit('deleteList', list.id)" title="delete list")
   .list__title(v-show="!viewChangeTitle")
     p {{list.name}}
-  .list__title-change(v-show="viewChangeTitle")
-    textarea.input( :value="list.name" @change="nameList = $event.target.value")
-    button.btn.btn--cancel(@click="viewChangeTitle = false") Отм
-    button.btn.btn--add(@click="changeNameList(list.id)") Доб
+  .list__title-change.opacity-btn(v-show="viewChangeTitle")
+    textarea.input-self.input-self--list( :value="list.name" @change="nameList = $event.target.value")
+    button.btn-icon.btn-icon--close(@click="viewChangeTitle = false")
+    button.btn-icon.btn-icon--check(@click="changeNameList(list.id)")
   .list__task
     Task(v-for="task in taskList(list.id)" :key="task.id" :task="task")
-  button.btn.btn--add(v-show="!viewAdd" @click="viewAdd = true") Добавить
+  button.btn.btn--add(v-show="!viewAdd" @click="openAddTask") Добавить
   .list__task-add(v-show="viewAdd")
-    textarea.input.input__list( v-model="newTask.text")
+    textarea.input.input__list( v-model="newTask.text" @blur="blur($event)" ref="textarea2" autofocus)
     .list__btn-add
       button.btn.btn--cancel(@click="viewAdd = false" title="cancel") Отменить
       button.btn.btn--add(@click="addNewTask(list.id)" title="add") Добавить
@@ -54,6 +54,13 @@ export default {
     changeNameList(id) {
       this.$store.commit('changeList', {id, name: this.nameList})
       this.viewChangeTitle = false
+    },
+    openAddTask() {
+      setTimeout(()=>  this.$refs.textarea2.focus(), 10)
+      this.viewAdd = true
+    },
+    blur(e) {
+      if (!e.relatedTarget || !e.relatedTarget.classList.contains('input__list')) this.viewAdd = false
     }
   }
 
@@ -72,6 +79,7 @@ export default {
   position: relative
   color: #1f233c
 
+
   &__btn
     position: absolute
     top: 10px
@@ -83,7 +91,9 @@ export default {
     text-align: left
     position: relative
     border-bottom: 1px solid #e7e7e7
-
+    &-change
+      display: flex
+      align-items: center
 
   &__task
     width: 260px
@@ -95,5 +105,7 @@ export default {
   justify-content: space-between
   width: 200px
   margin: 0 auto
+
+
 
 </style>

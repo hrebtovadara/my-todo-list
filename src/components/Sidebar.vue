@@ -44,6 +44,8 @@ export default {
   align-items: center
   justify-content: space-between
   z-index: 2
+  transition: all 0.5s
+
 
   &__container
     display: flex
@@ -57,6 +59,7 @@ export default {
     padding: 20px 32px
     margin-left: 10px
     border-bottom: 1px solid #e7e7e7
+    transition: all 0.4s
 
 
   &__item
@@ -71,6 +74,7 @@ export default {
     text-align: center
     border: 1px solid #c2baba
     border-bottom: 2px solid #c2baba
+    transition: width 0.4s
 
   &__wide
     width: 60px
@@ -92,6 +96,8 @@ export default {
       justify-content: center
       border-radius: 50%
       margin-bottom: 20px
+      transition: all 0.3s
+
 
     & .router-link-active
       border: 2px solid #786b64
