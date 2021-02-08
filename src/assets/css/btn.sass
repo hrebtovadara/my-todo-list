@@ -25,22 +25,36 @@
   &--check
     background-image: url("../image/icon/icon-check.svg")
 
-.btn-view
-  & .btn-icon
+.task:hover,
+.board-title:hover
+  .btn-icon
     opacity: .3
     &:hover
       opacity: .8
-
+.opacity-btn
+  .btn-icon
+    opacity: .3
+    &:hover
+      opacity: .8
 .input
   border: none
   border: 1px solid #e7e7e7
   border-radius: 3px
   padding: 5px
   min-height: 30px
-  height: 40px
+  height: 60px
   margin-bottom: 10px
   padding: 5px
-  width: 260px
+  &:focus
+    background-color: #f1f1f1
+  &__list
+    width: 260px
+  &__task
+    width: 237px
+    border: none
+    background: none
+    font-family: "Ubuntu", sans-serif
+    text-align: center
 
 .input-self
   border: none
@@ -49,3 +63,7 @@
   font-size: 20px
   font-family: "Ubuntu", sans-serif
   text-align: center
+  height: 30px
+  min-width: 250px
+
+

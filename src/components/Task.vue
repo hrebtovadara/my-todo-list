@@ -1,14 +1,15 @@
 <template lang="pug">
-div.task(:class="{'btn-view': viewbutton}" @mouseenter="viewbutton=true" @mouseleave="viewbutton=false")
+div.task
   .task__view(v-show="!viewEdit" )
     p.task__text {{task.text}}
     .bnt-container
       button.btn-icon.btn-icon--change(@click="viewEdit = true" title="change")
       button.btn-icon.btn-icon--del(@click="$store.commit('deleteTask', task.id)" title="delete")
   .task-edit(v-show="viewEdit")
-    input.input(:value="task.text" @change="text = $event.target.value")
-    button.btn-icon.btn-icon--check(@click="changeTextTask(task.id)" )
-    button.btn-icon.btn-icon--close(@click="viewEdit = false")
+    textarea.input.input__task(:value="task.text" @change="text = $event.target.value" @blur="viewEdit=false")
+    .task__btn-change
+      button.btn-icon.btn-icon--check(@click="changeTextTask(task.id)" )
+      button.btn-icon.btn-icon--close(@click="viewEdit = false")
 </template>
 
 <script>
@@ -52,10 +53,17 @@ export default {
     font-size: 14px
     width: 228px
 
+  &__edit
+    width: 230px
+
 .bnt-container
   position: absolute
   top: 5px
   right: 5px
 
+.task__btn-change
+  display: flex
+  align-items: center
+  justify-content: flex-end
 
 </style>

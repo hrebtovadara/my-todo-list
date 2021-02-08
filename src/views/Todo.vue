@@ -1,12 +1,12 @@
 <template lang="pug">
 div.board
-  .board-title(v-if="!viewChangeBoard" :class="{'btn-view': viewbutton}" @mouseenter="viewbutton=true" @mouseleave="viewbutton=false")
+  .board-title(v-if="!viewChangeBoard")
     p.board__title {{boardName.name}}
     button.btn-icon.btn-icon--change(@click="viewChangeBoard = true")
-  .board-change.btn-view(v-if="viewChangeBoard")
-    input.input-self(:value="(boardName.name).toUpperCase()" @change="nameBoard = $event.target.value")
-    button.btn-icon.btn-icon--close(@click="viewChangeBoard = false")
+  .board-change.opacity-btn(v-if="viewChangeBoard")
+    textarea.input-self(:value="(boardName.name).toUpperCase()" @change="nameBoard = $event.target.value")
     button.btn-icon.btn-icon--check(@click="changeNameBoard(boardName.id)")
+    button.btn-icon.btn-icon--close(@click="viewChangeBoard = false")
   .board__container
     List(v-for="list in Lists" :key="list.id" :list="list")
     AddNewList(:boardId="$route.params.id")

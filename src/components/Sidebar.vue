@@ -3,9 +3,8 @@ div.nav(:class="{wide}")
   .nav__container
     h2.nav__title(v-show="wide") Your cards
     router-link.nav__item.nav__item--home(to="/home") Home
-    router-link.nav__item.nav__item--board(v-for="board in $store.state.boards" :to="'/board/' + board.id" :style="'backgroundColor :'+  board.color") {{board.name | notWide(wide)}}
-    input.input-board
-    button(@click="newBoardView = true") добавить доску
+    router-link.nav__item.nav__item--board(v-for="board in $store.state.boards" :to="'/board/' + board.id" ) {{board.name | notWide(wide)}}
+    button(@click="newBoardView = true" :class="wide? 'nav__item' : 'nav__btn-add' ") {{wide? ('Добавить').toUpperCase(): ''}}
   button.nav__wide(@click="wide=!wide") click
   newBoard(v-if="newBoardView" @closePopup="closePopup")
 </template>
@@ -38,12 +37,11 @@ export default {
   background-color: #fbfafa
   box-shadow: 15px 0px 40px -25px
   padding: 100px 20px 60px
-  text-align: left
   position: absolute
   text-transform: uppercase
   display: flex
   flex-direction: column
-  align-items: flex-start
+  align-items: center
   justify-content: space-between
   z-index: 2
 
@@ -57,16 +55,8 @@ export default {
     position: absolute
     top: 30px
     padding: 20px 32px
-
-  &__item
-    padding: 10px
-    width: 180px
-    min-height: 60px
-    display: flex
-    align-items: center
-    justify-content: center
-    border-radius: 30px
-    margin-bottom: 20px
+    margin-left: 10px
+    border-bottom: 1px solid #e7e7e7
 
 
   &__item
@@ -78,6 +68,9 @@ export default {
     justify-content: center
     border-radius: 30px
     margin-bottom: 20px
+    text-align: center
+    border: 1px solid #c2baba
+    border-bottom: 2px solid #c2baba
 
   &__wide
     width: 60px
@@ -102,6 +95,42 @@ export default {
 
     & .router-link-active
       border: 2px solid #786b64
+
+    & .nav__btn-add
+      background: none
+      border-radius: 50%
+      width: 60px
+      height: 60px
+      border: 1px solid #c2baba
+      border-bottom: 2px solid #c2baba
+      position: relative
+      &:after
+        position: absolute
+        content: ""
+        width: 2px
+        height: 30px
+        background-color: #c2baba
+        top: 14px
+        left: 28px
+      &:before
+        position: absolute
+        content: ""
+        width: 30px
+        height: 2px
+        background-color: #c2baba
+        top: 28px
+        left: 14px
+
+
+.nav__btn
+  border: none
+  background: none
+  width: 60px
+  height: 60px
+
+.inline-svg-icon
+  width: 60px
+  height: 60px
 
 
 

@@ -1,19 +1,19 @@
 <template lang="pug">
 .list
-  .list__btn.btn-view
+  .list__btn.opacity-btn
     button.btn-icon.btn-icon--change(@click="viewChangeTitle = true" title="change list")
     button.btn-icon.btn-icon--close(@click="$store.commit('deleteList', list.id)" title="delete list")
   .list__title(v-show="!viewChangeTitle")
     p {{list.name}}
   .list__title-change(v-show="viewChangeTitle")
-    input.input( :value="list.name" @change="nameList = $event.target.value")
+    textarea.input( :value="list.name" @change="nameList = $event.target.value")
     button.btn.btn--cancel(@click="viewChangeTitle = false") Отм
     button.btn.btn--add(@click="changeNameList(list.id)") Доб
   .list__task
     Task(v-for="task in taskList(list.id)" :key="task.id" :task="task")
   button.btn.btn--add(v-show="!viewAdd" @click="viewAdd = true") Добавить
   .list__task-add(v-show="viewAdd")
-    input.input( v-model="newTask.text")
+    textarea.input.input__list( v-model="newTask.text")
     .list__btn-add
       button.btn.btn--cancel(@click="viewAdd = false" title="cancel") Отменить
       button.btn.btn--add(@click="addNewTask(list.id)" title="add") Добавить
@@ -83,6 +83,7 @@ export default {
     text-align: left
     position: relative
     border-bottom: 1px solid #e7e7e7
+
 
   &__task
     width: 260px

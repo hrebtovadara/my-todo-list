@@ -3,7 +3,7 @@ div.new-list.list
   p.list__title Добавить новый список
   button.btn.btn--create(v-show="!viewAdd" @click="viewAdd = true") создать
   .new-list__add(v-show="viewAdd")
-    input.input(placeholder="введите название нового списка задач" v-model="newList.name")
+    textarea.input(placeholder="введите название нового списка задач" v-model="newList.name")
     .list__btn-add
       button.btn.btn--cancel(@click="viewAdd = false") Отмена
       button.btn.btn--add(@click="addNewList(boardId)") Добавить
