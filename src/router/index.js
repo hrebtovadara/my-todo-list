@@ -14,7 +14,8 @@ const routes = [
   },
   {
     path: '/board/:id',
-    component: Todo
+    component: Todo,
+    name: 'board'
   }
 ]
 

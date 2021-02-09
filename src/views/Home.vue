@@ -1,9 +1,9 @@
 <template lang="pug">
 .home-page
   h1.home-page__title Welcome to your board
-  h3.home-page__subtitle Оба мы необщительны, молчаливы и не желаем раскрывать рта, если не помышляем произнести такое, что потрясет все собранье и будет передаваться из поколенья в поколенье со всем блеском пословицы.
+  h3.home-page__subtitle Семь колец - искусным гномам во дворце подгорном. Девять - людям Средиземья, на смерть обреченным. А одно - владыке тьмы на престоле черном, в Мордоре, где ночь и день - суть одно и то же.
   .home-page__container
-    .home-page__board(v-for="board in $store.state.boards" :key="board.id") {{board.name}}
+    .home-page__board(v-for="board in $store.state.boards" :key="board.id" @click="$router.push({ path: `/board/${board.id}` })") {{board.name}}
 </template>
 
 <script>
@@ -27,7 +27,6 @@ name: "Home.vue"
     font-size: 20px
     padding: 20px 0
 
-
   &__container
     margin: 30px 0
     display: flex
@@ -46,5 +45,6 @@ name: "Home.vue"
     text-transform: uppercase
     font-size: 16px
     border-radius: 10px
+    padding: 20px
 
 </style>

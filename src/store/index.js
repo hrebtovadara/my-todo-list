@@ -2,26 +2,24 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate";
 
-
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     data: {
       countBoards: 3,
-      countLists: 3,
-      countTasks: 5,
+      countLists: 4,
+      countTasks: 12,
     },
     boards: [
       {
         id: 1,
-        name: 'Эльфы Средиземья',
+        name: 'Братство кольца',
         color: '#f1e1eb'
       },
       {
         id: 2,
-        name: 'asdfg',
+        name: 'Поход Торина Дубощита',
         color: '#c5c3f1'
       }
     ],
@@ -34,8 +32,14 @@ export default new Vuex.Store({
       },
       {
         id: 2,
+        boardsId: 1,
+        name: 'Гимли, сын Глоина',
+        icon: ''
+      },
+      {
+        id: 3,
         boardsId: 2,
-        name: 'Карточка 2',
+        name: 'Бильбо Беггинс',
         icon: ''
       }
     ],
@@ -65,9 +69,45 @@ export default new Vuex.Store({
         status: ' ',
       },
       {
-        id: 4,
+        id: 5,
         listId: 2,
-        text: 'ыффпварпро',
+        text: 'Прибыть в Ривенделл',
+        status: ' ',
+      },
+      {
+        id: 6,
+        listId: 2,
+        text: 'Уничтожить кольцо',
+        status: ' ',
+      },
+      {
+        id: 7,
+        listId: 2,
+        text: 'Попросить прядь волос Галадриэль',
+        status: ' ',
+      },
+      {
+        id: 8,
+        listId: 2,
+        text: 'Перебить больше орков, чем эльф',
+        status: ' ',
+      },
+      {
+        id: 9,
+        listId: 3,
+        text: 'Угостить гномов ужином',
+        status: ' ',
+      },
+      {
+        id: 10,
+        listId: 3,
+        text: 'Не забыть носовой платок!',
+        status: ' ',
+      },
+      {
+        id: 11,
+        listId: 3,
+        text: 'Отправиться в нежданное путешествие',
         status: ' ',
       },
     ]
