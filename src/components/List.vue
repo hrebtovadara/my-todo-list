@@ -13,7 +13,7 @@
     Task(v-for="task in taskList(list.id)" :key="task.id" :task="task")
   button.btn.btn--add(v-show="!viewAdd" @click="openAddTask") Добавить
   .list__task-add(v-show="viewAdd")
-    textarea.input.input__list( v-model="newTask.text" @blur="blur($event)" ref="textarea2" autofocus)
+    textarea.input.input__list(v-model="newTask.text" @blur="blur($event)" ref="textarea2" autofocus)
     .list__btn-add
       button.btn.btn--cancel(@click="viewAdd = false" title="cancel") Отменить
       button.btn.btn--add(@click="addNewTask(list.id)" title="add") Добавить
@@ -60,7 +60,7 @@ export default {
       this.viewAdd = true
     },
     blur(e) {
-      if (!e.relatedTarget || !e.relatedTarget.classList.contains('input__list')) this.viewAdd = false
+      if (!e.relatedTarget || !e.relatedTarget.classList.contains('btn--add')) this.viewAdd = false
     }
   }
 

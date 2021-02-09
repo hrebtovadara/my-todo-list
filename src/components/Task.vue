@@ -8,7 +8,7 @@ div.task
   .task-edit(v-show="viewEdit")
     textarea.input.input__task(:value="task.text" @change="text = $event.target.value" @blur="blur($event)" ref="textarea" autofocus)
     .task__btn-change
-      button.btn-icon.btn-icon--check(@click.self="changeTextTask(task.id)" )
+      button.btn-icon.btn-icon--check(@click="changeTextTask(task.id)" )
       button.btn-icon.btn-icon--close(@click="viewEdit = false")
 </template>
 

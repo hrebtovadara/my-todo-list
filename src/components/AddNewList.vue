@@ -36,7 +36,7 @@ export default {
       this.viewAdd = true
     },
     blur(e) {
-      if (!e.relatedTarget || !e.relatedTarget.classList.contains('input__list')) this.viewAdd = false
+      if (!e.relatedTarget || !e.relatedTarget.classList.contains('btn--add')) this.viewAdd = false
     }
   }
 }
