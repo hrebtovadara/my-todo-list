@@ -33,6 +33,7 @@ export default {
   },
   methods: {
     changeNameBoard(id) {
+      if(!this.nameBoard) return
       this.$store.commit('changeNameBoard', {id, name: this.nameBoard})
       this.viewChangeBoard = false
     }

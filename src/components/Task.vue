@@ -26,6 +26,7 @@ export default {
       this.viewEdit = true
     },
     changeTextTask(id) {
+      if(!this.task.text) return
       this.$store.commit('changeTask', {id, text: this.text})
       this.viewEdit = false
     },

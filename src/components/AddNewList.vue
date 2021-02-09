@@ -25,6 +25,7 @@ export default {
   props: ['boardId'],
   methods: {
     addNewList(boardId) {
+      if (!this.newList.name) return
       this.newList.boardsId = boardId
       this.newList.id = this.$store.state.data.countLists
       this.$store.commit('addNewList', {...this.newList})

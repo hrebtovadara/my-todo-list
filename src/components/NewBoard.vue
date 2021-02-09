@@ -17,8 +17,8 @@ export default {
     }}),
   methods: {
     addNewBoard() {
+      if(!this.newBoard.name) return
       this.newBoard.id = this.$store.state.data.countBoards
-      console.log(this.newBoard.name)
       this.$store.commit('addNewBoard', {...this.newBoard})
       this.$emit('closePopup')
       this.newBoard.name = ''

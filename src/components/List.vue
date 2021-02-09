@@ -44,6 +44,7 @@ export default {
   props: ['list'],
   methods: {
     addNewTask(listId) {
+      if (!this.newTask.text) return
       let id = this.$store.state.data.countTasks
       this.newTask.id = id
       this.newTask.listId = listId
@@ -52,8 +53,10 @@ export default {
       this.viewAdd = false
     },
     changeNameList(id) {
-      this.$store.commit('changeList', {id, name: this.nameList})
-      this.viewChangeTitle = false
+      if (this.nameList) {
+        this.$store.commit('changeList', {id, name: this.nameList})
+        this.viewChangeTitle = false
+      }
     },
     openAddTask() {
       setTimeout(()=>  this.$refs.textarea2.focus(), 10)
