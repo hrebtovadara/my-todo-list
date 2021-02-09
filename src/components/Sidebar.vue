@@ -43,7 +43,7 @@ export default {
   flex-direction: column
   align-items: center
   justify-content: space-between
-  z-index: 2
+  z-index: 4
   transition: all 0.5s
 
 

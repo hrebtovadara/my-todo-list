@@ -20,7 +20,8 @@ export default {
   data: () => ({
     viewChangeBoard: false,
     nameBoard: '',
-    viewbutton: false
+    viewbutton: false,
+    boardShadow: false
   }),
   components: {List, AddNewList},
   computed: {
@@ -36,25 +37,43 @@ export default {
       if(!this.nameBoard) return
       this.$store.commit('changeNameBoard', {id, name: this.nameBoard})
       this.viewChangeBoard = false
-    }
+    },
   }
 }
 </script>
 
 <style lang="sass">
+
+::-webkit-scrollbar
+  width: 10px /* ширина для вертикального скролла */
+  height: 10px /* высота для горизонтального скролла */
+  border-radius: 9px
+  background-color: transparent
+::-webkit-scrollbar-thumb
+  background-color: #d5d5d5
+  border-radius: 9px
+  box-shadow: inset 1px 1px 10px #f3faf7
+
+
 .board
-  padding: 45px 90px
+  padding: 15px 20px 0 90px
+  position: relative
 
   &__container
     display: flex
     align-items: flex-start
-    flex-wrap: wrap
+    overflow-x: auto
+    width: 92%
+    position: fixed
+    top: 85px
+    left: 110px
+    bottom: 20px
 
   &__title
     text-transform: uppercase
     font-size: 20px
     margin-right: 10px
-    height: 30px
+    height: 50px
     display: flex
     align-items: center
 
@@ -67,4 +86,5 @@ export default {
   display: flex
   align-items: center
   justify-content: center
+
 </style>

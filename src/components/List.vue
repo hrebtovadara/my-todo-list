@@ -76,12 +76,14 @@ export default {
   min-height: 100px
   background-color: #ffffff
   border-radius: 5px
-  margin: 30px
+  margin: 30px 0 30px
+  margin-left: 20px
   padding: 30px 20px 30px
   box-shadow: 0px 0px 40px -25px #95a1c5
   position: relative
   color: #1f233c
-
+  flex-basis: 300px
+  min-width: 300px
 
   &__btn
     position: absolute
@@ -101,6 +103,9 @@ export default {
   &__task
     width: 260px
     border-bottom: 1px solid #e7e7e7
+    overflow-y: auto
+    max-height: 600px
+
 
 .list__btn-add
   display: flex
