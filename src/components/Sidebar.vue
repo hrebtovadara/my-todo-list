@@ -1,11 +1,12 @@
 <template lang="pug">
-div.nav(:class="{wide}")
+div.nav
   .nav__container
-    h2.nav__title(v-show="wide") Your cards
-    router-link.nav__item.nav__item--home(to="/home") Home
-    router-link.nav__item.nav__item--board(v-for="board in $store.state.boards" :to="'/board/' + board.id" ) {{board.name | notWide(wide)}}
-    button(@click="newBoardView = true" :class="wide? 'nav__item' : 'nav__btn-add' ") {{wide? ('Добавить').toUpperCase(): ''}}
-  button.nav__wide(@click="wide=!wide") click
+
+    router-link.nav__item--home.nav__title(to="/home") home
+    router-link.nav__item.nav__item--board(v-for="board in $store.state.boards" :to="'/board/' + board.id" )
+      .circle(:style="'background-color:' + color[board.id]")
+      span {{board.name}}
+    button.btn(@click="newBoardView = true") Добавить
   newBoard(v-if="newBoardView" @closePopup="closePopup")
 </template>
 
@@ -13,8 +14,8 @@ div.nav(:class="{wide}")
 import newBoard from '@/components/NewBoard'
 export default {
   data: () => ({
-    wide: false,
-    newBoardView: false
+    newBoardView: false,
+    color: {1: '#d2ceff', 2: '#d1e5f7', 3: '#ffcece', 4: '#daf2d6'}
   }),
   filters: {
     notWide(name, wide) {
@@ -32,20 +33,17 @@ export default {
 
 <style lang="sass">
 .nav
-  width: 230px
+  width: 260px
   min-height: 100vh
-  background-color: #fbfafa
-  box-shadow: 15px 0px 40px -25px
-  padding: 100px 20px 60px
+  margin-top: 118px
+  padding: 20px 10px 20px 64px
   position: absolute
-  text-transform: uppercase
   display: flex
   flex-direction: column
   align-items: center
   justify-content: space-between
   z-index: 4
-  transition: all 0.5s
-
+  background: #ffffff
 
   &__container
     display: flex
@@ -54,91 +52,40 @@ export default {
     justify-content: flex-start
 
   &__title
-    position: absolute
-    top: 30px
-    padding: 20px 32px
-    margin-left: 10px
-    border-bottom: 1px solid #e7e7e7
-    transition: all 0.4s
-
+    color: #69665c
+    font-size: 20px
+    font-weight: bold
 
   &__item
-    padding: 10px
-    width: 180px
-    min-height: 60px
+    margin-bottom: 20px
+    color: #69665c
+    padding: 5px
+    text-align: left
+    font-size: 14px
     display: flex
     align-items: center
-    justify-content: center
-    border-radius: 30px
-    margin-bottom: 20px
-    text-align: center
-    border: 1px solid #c2baba
-    border-bottom: 2px solid #c2baba
-    transition: width 0.4s
-
-  &__wide
-    width: 60px
-    height: 60px
-    border-radius: 50%
-    background-color: #f2cee2
-    border: none
-
-  &:not(.wide)
-    width: 90px
-    padding: 100px 15px 60px
-
-    & .nav__item
-      width: 60px
-      min-height: 0
-      height: 60px
-      display: flex
-      align-items: center
-      justify-content: center
-      border-radius: 50%
+    justify-content: flex-start
+    &--home
       margin-bottom: 20px
-      transition: all 0.3s
-
-
-    & .router-link-active
-      border: 2px solid #786b64
-
-    & .nav__btn-add
-      background: none
-      border-radius: 50%
-      width: 60px
-      height: 60px
-      border: 1px solid #c2baba
-      border-bottom: 2px solid #c2baba
-      position: relative
-      &:after
-        position: absolute
-        content: ""
-        width: 2px
-        height: 30px
-        background-color: #c2baba
-        top: 14px
-        left: 28px
-      &:before
-        position: absolute
-        content: ""
-        width: 30px
-        height: 2px
-        background-color: #c2baba
-        top: 28px
-        left: 14px
-
+      margin-left: 44px
 
 .nav__btn
   border: none
   background: none
   width: 60px
   height: 60px
+  &-add
+    background: #95a1c5
 
 .inline-svg-icon
   width: 60px
   height: 60px
 
-
+.circle
+  min-width: 30px
+  height: 30px
+  border-radius: 50%
+  margin-right: 10px
 
 
 </style>

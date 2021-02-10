@@ -4,7 +4,7 @@ div.board
     p.board__title {{boardName.name}}
     button.btn-icon.btn-icon--change(@click="viewChangeBoard = true")
   .board-change.opacity-btn(v-if="viewChangeBoard")
-    textarea.input-self.input-self--board(:value="(boardName.name).toUpperCase()" @change="nameBoard = $event.target.value"  :cols="nameBoard.length")
+    textarea.input-self.input-self--board(:value="(boardName.name).toUpperCase()" @change="nameBoard = $event.target.value" :cols="nameBoard.length")
     button.btn-icon.btn-icon--check(@click="changeNameBoard(boardName.id)")
     button.btn-icon.btn-icon--close(@click="viewChangeBoard = false")
   .board__container
@@ -13,23 +13,21 @@ div.board
 </template>
 
 <script>
-import List from "@/components/List";
-import AddNewList from "@/components/AddNewList";
+import List from "@/components/List"
+import AddNewList from "@/components/AddNewList"
 
 export default {
   data: () => ({
     viewChangeBoard: false,
     nameBoard: '',
-    viewbutton: false,
-    boardShadow: false
   }),
   components: {List, AddNewList},
   computed: {
     Lists() {
-      return this.$store.state.list.filter(elem => elem.boardsId == this.$route.params.id)
+      return this.$store.state.boards.find(elem => elem.id == this.$route.params.id).list
     },
     boardName() {
-      return this.$store.state.boards.find(elem => elem.id == this.$route.params.id)
+      return this.$store.state.boards.find(elem => elem.id ==  this.$route.params.id)
     }
   },
   methods: {
@@ -45,19 +43,21 @@ export default {
 <style lang="sass">
 
 ::-webkit-scrollbar
-  width: 10px /* ширина для вертикального скролла */
-  height: 10px /* высота для горизонтального скролла */
+  width: 6px /* ширина для вертикального скролла */
+  height: 8px /* высота для горизонтального скролла */
   border-radius: 9px
   background-color: transparent
 ::-webkit-scrollbar-thumb
-  background-color: #d5d5d5
+  background-color: #b2afa1
   border-radius: 9px
-  box-shadow: inset 1px 1px 10px #f3faf7
+  opacity: .8
 
 
 .board
-  padding: 15px 20px 0 90px
+  padding: 40px 68px
   position: relative
+  z-index: 3
+  background-color: #ffffff
 
   &__container
     display: flex
@@ -65,17 +65,18 @@ export default {
     overflow-x: auto
     width: 92%
     position: fixed
-    top: 85px
-    left: 110px
+    top: 100px
+    left: 260px
     bottom: 20px
 
   &__title
-    text-transform: uppercase
-    font-size: 20px
-    margin-right: 10px
+    color: #69665c
+    font-size: 28px
+    font-weight: bold
     height: 50px
     display: flex
     align-items: center
+
 
 .board-change
   margin: 0 auto
@@ -85,6 +86,7 @@ export default {
 .board-title
   display: flex
   align-items: center
-  justify-content: center
+  justify-content: flex-start
+
 
 </style>

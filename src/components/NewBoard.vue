@@ -1,9 +1,11 @@
 <template lang="pug">
-.new-board.opacity-btn
-  p.new-board__title Введите название доски:
-  textarea.new-board__text(v-model="newBoard.name")
-  button.new-board__add(@click="addNewBoard") Добавить
-  button.btn-icon.btn-icon--close.new-board__close(@click="$emit('closePopup')")
+.new-board-container.opacity-btn
+  .dark-theme-fon(@click="$emit('closePopup')")
+  .new-board
+    p.new-board__title Введите название доски:
+    textarea.input.input__list(v-model="newBoard.name")
+    button.btn(@click="addNewBoard") Добавить
+    button.btn-icon.btn-icon--close.new-board__close(@click="$emit('closePopup')")
 
 </template>
 
@@ -36,31 +38,15 @@ export default {
   margin: 0 auto
   z-index: 3
   width: 300px
-  height: 260px
-  background-color: white
-  box-shadow: 0px 0px 22px -10px #000000
-  border-radius: 20px
+  min-height: 200px
+  background-color: #fff9de
+  border-radius: 3px
   padding: 20px
   color: #1f233c
   &__title
     padding: 20px 0
-    border-bottom: 1px solid #e7e7e7
-  &__text
-    border: none
-    border: 1px solid #e7e7e7
-    border-radius: 3px
-    width: 260px
-    padding: 5px
-    min-height: 30px
-    height: 60px
-    margin: 20px 0
-    padding: 5px
-  &__add
-    width: 260px
-    border: none
-    height: 40px
-    text-transform: uppercase
-
+    margin-bottom: 20px
+    text-transform: none
   &__close
     position: absolute
     top: 10px

@@ -12,6 +12,9 @@ export default {
   components: {Sidebar},
   data: () => ({
   }),
+  mounted() {
+    console.log(JSON.stringify(this.$store.state.boards))
+  }
 }
 </script>
 
@@ -29,7 +32,7 @@ export default {
   width: 100%
   min-height: 100vh
   border-radius: 10px
-  background-color: #f6f7fb
+  background-color: #ffffff
   box-shadow: 0px 8px 45px -1px #909cd1
 
 </style>
