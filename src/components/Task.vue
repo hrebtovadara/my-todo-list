@@ -1,8 +1,8 @@
 <template lang="pug">
 div.task
-  .task__view(v-show="!viewEdit" :class="{active}")
-    input.checkbox(type="checkbox" :id="'checkbox-'+ task.id" :value="active" @change="activeTask()")
-    label.task__text.label(:for="'checkbox-'+ task.id" :style="'text-decoration:' + (active?'line-through': 'none')") {{task.text}}
+  .task__view(v-show="!viewEdit" :class="task.active? 'active' : ''")
+    input.checkbox(type="checkbox" :id="'checkbox-'+ task.id" :checked="task.active" @change="$store.commit('activeTask', {boardId: $route.params.id, task})")
+    label.task__text.label(:for="'checkbox-'+ task.id" :style="'text-decoration:' + (task.active ? 'line-through': 'none')") {{task.text}}
     button.btn-icon.btn-icon--change(@click="openChangeTask()" title="change")
   .task-edit(v-show="viewEdit")
     textarea.input.input__task(:value="task.text" @change="text = $event.target.value" @blur="blur($event)" ref="textarea" autofocus)
@@ -19,7 +19,6 @@ export default {
     viewEdit: false,
     text: '',
     viewbutton: false,
-    active: false,
   }),
   props: ['task'],
   methods: {

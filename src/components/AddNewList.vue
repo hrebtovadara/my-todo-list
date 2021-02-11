@@ -10,36 +10,34 @@ div.new-list.list
 </template>
 
 <script>
-
 export default {
   data: () => ({
     viewAdd: false,
-    newList:
-      {
-        id: '',
-        boardsId: '',
-        name: '',
-        icon: ''
-      }
+    newList: {
+      id: '',
+      boardId: '',
+      name: '',
+      icon: '',
+    },
   }),
   props: ['boardId'],
   methods: {
     addNewList(boardId) {
       if (!this.newList.name) return
-      this.newList.boardsId = boardId
+      this.newList.boardId = boardId
       this.newList.id = this.$store.state.data.countLists
-      this.$store.commit('addNewList', {...this.newList})
+      this.$store.commit('addNewList', { ...this.newList })
       this.newList.name = ''
       this.viewAdd = false
     },
     openAddList() {
-      setTimeout(()=>  this.$refs.textarea3.focus(), 10)
+      setTimeout(() => this.$refs.textarea3.focus(), 10)
       this.viewAdd = true
     },
     blur(e) {
       if (!e.relatedTarget || !e.relatedTarget.classList.contains('btn--add')) this.viewAdd = false
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -47,5 +45,4 @@ export default {
 .new-list
   & .list__title
     text-align: center
-
 </style>

@@ -40,25 +40,25 @@ export default new Vuex.Store({
                 id: 1,
                 listId: 1,
                 text: 'Принять участие в совете в Ривенделле',
-                status: false,
+                active: false,
               },
               {
                 id: 2,
                 listId: 1,
                 text: 'Помочь Фродо',
-                status: false,
+                active: false,
               },
               {
                 id: 3,
                 listId: 1,
                 text: 'Найти и спасти Мерри и Пиппина',
-                status: false,
+                active: false,
               },
               {
                 id: 4,
                 listId: 1,
                 text: 'Принять участие в Битве у Хельмовой Пади',
-                status: false,
+                active: false,
               },
             ],
           },
@@ -72,25 +72,25 @@ export default new Vuex.Store({
                 id: 5,
                 listId: 2,
                 text: 'Прибыть в Ривенделл',
-                status: false,
+                active: false,
               },
               {
                 id: 6,
                 listId: 2,
                 text: 'Уничтожить кольцо',
-                status: false,
+                active: false,
               },
               {
                 id: 7,
                 listId: 2,
                 text: 'Попросить прядь волос Галадриэль',
-                status: false,
+                active: false,
               },
               {
                 id: 8,
                 listId: 2,
                 text: 'Перебить больше орков, чем эльф',
-                status: false,
+                active: false,
               },
             ],
           },
@@ -110,19 +110,19 @@ export default new Vuex.Store({
                 id: 9,
                 listId: 3,
                 text: 'Угостить гномов ужином',
-                status: false,
+                active: false,
               },
               {
                 id: 10,
                 listId: 3,
                 text: 'Не забыть носовой платок!',
-                status: false,
+                active: false,
               },
               {
                 id: 11,
                 listId: 3,
                 text: 'Отправиться в нежданное путешествие',
-                status: false,
+                active: false,
               },
             ],
           },
@@ -150,16 +150,19 @@ export default new Vuex.Store({
       list.tasks.splice(taskIndex, 1)
     },
     addNewList(state, payload) {
-      state.list.push(payload)
+      searchIndex(state, { boardId: payload.boardId }).list.push(payload)
       state.data.countLists++
     },
     changeList(state, { list, name }) {
       searchIndex(state, { boardId: list.boardsId, listId: list.id }).name = name
     },
     deleteList(state, list) {
-      const iBoard = state.boards.findIndex((elem) => elem.id == list.boardsId)
-      const iList = state.boards[iBoard].list.findIndex((elem) => elem.id === list.id)
-      state.boards[iBoard].list.splice(iList, 1)
+      const { board, listIndex } = searchIndex(
+        state,
+        { boardId: list.boardId, listId: list.id },
+        true
+      )
+      board.list.splice(listIndex, 1)
     },
     addNewBoard(state, payload) {
       state.boards.push(payload)
@@ -172,7 +175,11 @@ export default new Vuex.Store({
       const list = searchIndex(state, { boardId, listId })
       list.tasks = value
       list.tasks.forEach((elem) => (elem.listId = listId))
-      console.log(list.tasks)
+    },
+    activeTask(state, { boardId, task }) {
+      let taskActive = searchIndex(state, { boardId, listId: task.listId, taskId: task.id })
+      taskActive.active = !taskActive.active
+      console.log(taskActive)
     },
   },
   actions: {},
