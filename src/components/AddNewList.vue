@@ -1,7 +1,6 @@
 <template lang="pug">
-div.new-list.list
-  p.list__title Добавить новый список
-  button.btn.btn--create(v-show="!viewAdd" @click="openAddList") создать
+.new-list.list
+  p.new-list__title(@click="openAddList") Добавить новый список
   .new-list__add(v-show="viewAdd")
     textarea.input.input__list(v-model="newList.name" @blur="blur($event)" ref="textarea3")
     .list__btn-add
@@ -42,7 +41,9 @@ export default {
 </script>
 
 <style lang="sass">
-.new-list
-  & .list__title
-    text-align: center
+.new-list__title
+  font-size: 17px
+  padding: 10px
+  text-align: center
+  font-weight: bold
 </style>

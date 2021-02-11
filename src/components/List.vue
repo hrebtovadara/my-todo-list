@@ -1,23 +1,22 @@
 <template lang="pug">
-.list
+.list(@mouseout="viewAddButton = true" @mouseleave="viewAddButton = false")
   .list__btn(v-show="viewMenu" @mouseleave="viewMenu = false")
-    p(@click="viewChangeTitle = true") Edit...
+    p(@click="openChangeTitle()") Edit...
     p(@click="$store.commit('deleteList', list)" ) Delete
   .list__title(v-show="!viewChangeTitle")
-    p {{list.name}}
+    p {{list.name.length > 17? list.name.slice(0, 20) + '...': list.name}}
     button.btn-icon--menu.btn-menu.list__btn-menu(@click="viewMenu = true")
   .list__title-change.opacity-btn(v-show="viewChangeTitle")
-    textarea.input-self.input-self--list( :value="list.name" @change="nameList = $event.target.value")
-    button.btn-icon.btn-icon--close(@click="viewChangeTitle = false")
-    button.btn-icon.btn-icon--check(@click="changeNameList(list)")
+    input.input-self.input-self--list(:value="list.name" @change="nameList = $event.target.value" @blur="blur($event)" ref="inputTitle")
+    button.btn-icon.btn-icon--check.dont-close(@click="changeNameList(list)")
   draggable.list__task(v-model="myList" group="people" @start="drag=true" @end="drag=false")
     Task(v-for="task in myList" :key="task.id" :task="task")
-  button.btn.btn--add(v-show="!viewAdd" @click="openAddTask") Добавить
+  button.btn.btn--add(v-show="!viewAdd && viewAddButton" @click="openAddTask" style="width: 100%") Add new task
   .list__task-add(v-show="viewAdd")
-    textarea.input.input__list(v-model="newTask.text" @blur="blur($event)" ref="textarea2" autofocus)
+    textarea.input.input__list(v-model="newTask.text" @blur="blur($event)" ref="textarea2")
     .list__btn-add
       button.btn.btn--cancel(@click="viewAdd = false" title="cancel") Отменить
-      button.btn.btn--add(@click="addNewTask(list)" title="add") Добавить
+      button.btn.btn--add.dont-close(@click="addNewTask(list)" title="add") Добавить
 </template>
 
 <script>
@@ -28,6 +27,7 @@ export default {
   data: () => ({
     wide: true,
     viewAdd: false,
+    viewAddButton: false,
     viewChangeTitle: false,
     newTask: {
       id: '',
@@ -35,7 +35,7 @@ export default {
       text: '',
       status: true,
     },
-    nameList: 'name',
+    nameList: '',
     viewMenu: false,
   }),
   computed: {
@@ -76,8 +76,24 @@ export default {
       setTimeout(() => this.$refs.textarea2.focus(), 10)
       this.viewAdd = true
     },
+    openChangeTitle() {
+      setTimeout(() => this.$refs.inputTitle.focus(), 10)
+      this.viewMenu = false
+      this.viewChangeTitle = true
+    },
     blur(e) {
-      if (!e.relatedTarget || !e.relatedTarget.classList.contains('btn--add')) this.viewAdd = false
+      if (!e.relatedTarget || !e.relatedTarget.classList.contains('dont-close')) {
+        this.viewAdd = false
+        this.viewChangeTitle = false
+        console.log(this.viewChangeTitle)
+      }
+    },
+  },
+  directives: {
+    focus: {
+      inserted: function (el) {
+        el.focus()
+      },
     },
   },
 }
@@ -99,22 +115,27 @@ export default {
 
   &__btn
     position: absolute
-    top: 10px
-    right: 10px
+    top: 20px
+    right: 20px
     width: 120px
     border-radius: 6px
     min-height: 80px
     background-color: #ffffff
     z-index: 4
+    border: 1px solid #f1eedf
+
     & p
       width: 100%
       height: 40px
       padding: 15px
       color: #afac9d
+      font-size: 14px
       display: flex
       align-items: center
       justify-content: flex-start
       border-bottom: 1px solid #f5f5f5
+      &:hover
+        font-weight: bold
 
   &__title
     font-size: 17px
@@ -127,8 +148,14 @@ export default {
     justify-content: space-between
     &-change
       display: flex
-      align-items: flex-start
-      padding: 8px 0 18px
+      align-items: center
+      justify-content: space-between
+      padding: 10px
+      & input
+        font-weight: bold
+        color: #69665c
+        width: 200px
+        margin-right: 10px
 
 
   &__task

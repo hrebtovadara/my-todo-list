@@ -5,7 +5,7 @@ div.task
     label.task__text.label(:for="'checkbox-'+ task.id" :style="'text-decoration:' + (task.active ? 'line-through': 'none')") {{task.text}}
     button.btn-icon.btn-icon--change(@click="openChangeTask()" title="change")
   .task-edit(v-show="viewEdit")
-    textarea.input.input__task(:value="task.text" @change="text = $event.target.value" @blur="blur($event)" ref="textarea" autofocus)
+    textarea.input-self.input-self--task(:value="task.text" @change="text = $event.target.value" @blur="blur($event)" ref="textarea")
     .task__btn-change
       button.btn-icon.btn-icon--check.dont-close(@click="changeTextTask(task)" )
       button.btn-icon.btn-icon--del.dont-close(@click="$store.commit('deleteTask', {task, boardId: $route.params.id})" title="delete")
@@ -50,7 +50,7 @@ export default {
     font-weight: 600
   &__view
     display: flex
-    align-items: center
+    align-items: flex-start
     justify-content: space-between
     min-height: 30px
     padding: 5px

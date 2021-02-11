@@ -1,42 +1,33 @@
-
 .btn
   font-family: 'Clean', sans-serif
-  border: none
   border-radius: 10px
   width: 130px
   height: 30px
   margin-top: 20px
-  background: transparent
-  background: #69665c
-  color: #ffffff
-  &:focus, &:active
-    border: 2px solid #69665c
-  &:hover
-    background: #69665c
-.btn-menu
-  border: none
-  background-color: transparent
-  width: 20px
-  height: 20px
-.btn-icon
-  border: none
-  width: 18px
-  height: 18px
-  opacity: 0
-  margin: 2px
-  &--change
-    background-image: url("../image/icon/icon-edit.svg")
-  &--close
-    background-image: url("../image/icon/icon-close.svg")
-  &--del
-    background-image: url("../image/icon/icon-minus.svg")
-  &--add
-    background-image: url("../image/icon/icon-close.svg")
-    transform: rotate(45deg)
-  &--check
-    background-image: url("../image/icon/icon-check.svg")
-  &--menu
-    background-image: url("../image/icon/icon-menu.svg")
+  color: #69665c
+  &:focus, &:active, &:hover
+   font-weight: bold
+  &-menu
+    width: 20px
+    height: 20px
+  &-icon
+    width: 18px
+    height: 18px
+    opacity: 0
+    margin: 2px
+    &--change
+      background-image: url("../image/icon/icon-edit.svg")
+    &--close
+      background-image: url("../image/icon/icon-close.svg")
+    &--del
+      background-image: url("../image/icon/icon-minus.svg")
+    &--add
+      background-image: url("../image/icon/icon-close.svg")
+      transform: rotate(45deg)
+    &--check
+      background-image: url("../image/icon/icon-check.svg")
+    &--menu
+      background-image: url("../image/icon/icon-menu.svg")
 
 .task:hover,
 .board-title:hover
@@ -44,11 +35,13 @@
     opacity: .3
     &:hover
       opacity: .8
+
 .opacity-btn
   .btn-icon
     opacity: .3
     &:hover
       opacity: .8
+
 .input
   border: none
   border-radius: 6px
@@ -62,31 +55,40 @@
     width: 260px
 
   &__task
-    width: 237px
+    width: 228px
     border: none
     background: none
-    text-align: center
-
-.input-self
-  border: none
-  background: none
-  height: 30px
-  min-width: 100px
-  max-width: 1000px
-  font-family: "Clean", sans-serif
-  padding: 0
-  margin: 0
-  &--board
-    font-size: 20px
-    text-align: center
-    color: #95a1c5
-  &--list
-    font-size: 17px
     text-align: left
-    color: #1f233c
+    padding-left: 30px
+
+  &-self
+    border: none
+    background: none
+    font-family: "Clean", sans-serif
+    padding: 0
+    margin: 0
+    letter-spacing: 1px
+
+    &--list
+      font-size: 17px
+      text-align: left
+      color: #1f233c
+
+    &--task
+      width: 213px
+      border: none
+      background: none
+      text-align: left
+      margin-left: 30px
+      padding:  5px
+      font-size: 14px
+      color: #69665c
+      min-height: 20px
+
 
 .checkbox
   display: none
+
 .label
   position: relative
   padding-left: 30px
@@ -99,6 +101,7 @@
     left: 6px
     border: 1px solid #69665c
     border-radius: 3px
+
 .checkbox:checked + .label:after
     position: absolute
     content: " "
