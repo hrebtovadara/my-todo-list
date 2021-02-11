@@ -85,31 +85,32 @@ export default new Vuex.Store({
       {
         id: 2,
         name: 'Поход Торина Дубощита',
-        list: [ {
-          id: 3,
-          boardsId: 2,
-          name: 'Бильбо Беггинс',
-          icon: '',
-          tasks: [
-            {
-              id: 9,
-              listId: 3,
-              text: 'Угостить гномов ужином',
-              status: ' ',
-            },
-            {
-              id: 10,
-              listId: 3,
-              text: 'Не забыть носовой платок!',
-              status: ' ',
-            },
-            {
-              id: 11,
-              listId: 3,
-              text: 'Отправиться в нежданное путешествие',
-              status: ' ',
-            },
-          ]
+        list: [
+          {
+            id: 3,
+            boardsId: 2,
+            name: 'Бильбо Беггинс',
+            icon: '',
+            tasks: [
+              {
+                id: 9,
+                listId: 3,
+                text: 'Угостить гномов ужином',
+                status: ' ',
+              },
+              {
+                id: 10,
+                listId: 3,
+                text: 'Не забыть носовой платок!',
+                status: ' ',
+              },
+              {
+                id: 11,
+                listId: 3,
+                text: 'Отправиться в нежданное путешествие',
+                status: ' ',
+              },
+            ]
         }]
       }
     ],
@@ -157,10 +158,12 @@ export default new Vuex.Store({
       let index = state.boards.findIndex(elem => elem.id === id)
       state.boards[index].name = name
     },
-    updateList(state, {value, boardId}) {
+    updateList(state, {value, boardId, listId}) {
       const iBoard = state.boards.findIndex(elem => elem.id == boardId)
-      const iList = state.boards[iBoard].list.findIndex(elem => elem.id === value[0].listId)
+      const iList = state.boards[iBoard].list.findIndex(elem => elem.id === listId)
       state.boards[iBoard].list[iList].tasks = value
+      state.boards[iBoard].list[iList].tasks.forEach(elem => elem.listId = listId)
+      console.log(state.boards[iBoard].list[iList].tasks)
     }
   },
   actions: {

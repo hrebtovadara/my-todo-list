@@ -11,7 +11,7 @@
     button.btn-icon.btn-icon--close(@click="viewChangeTitle = false")
     button.btn-icon.btn-icon--check(@click="changeNameList(list)")
   draggable.list__task(v-model="myList" group="people" @start="drag=true" @end="drag=false")
-    Task(v-for="task in list.tasks" :key="task.id" :task="task")
+    Task(v-for="task in myList" :key="task.id" :task="task")
   button.btn.btn--add(v-show="!viewAdd" @click="openAddTask") Добавить
   .list__task-add(v-show="viewAdd")
     textarea.input.input__list(v-model="newTask.text" @blur="blur($event)" ref="textarea2" autofocus)
@@ -44,8 +44,7 @@ export default {
         return this.list.tasks
       },
       set(value) {
-        console.log(1, value)
-        this.$store.commit('updateList', {value, boardId: this.$route.params.id})
+        this.$store.commit('updateList', {value, boardId: this.$route.params.id, listId: this.list.id})
       }
     }
   },
