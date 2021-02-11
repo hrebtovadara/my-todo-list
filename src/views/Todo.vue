@@ -3,9 +3,7 @@ div.board
   .board-title(v-if="!viewChangeBoard")
     p.board__title(@click="viewChangeBoard = true") {{boardName.name}}
   .board-title.opacity-btn(v-if="viewChangeBoard")
-    input.board__title.input-self.input-self--board(:value="boardName.name" @change="nameBoard = $event.target.value" :cols="nameBoard.length" @blur="blur($event)" v-focus)
-    button.btn-icon.btn-icon--check(@click="changeNameBoard(boardName.id)")
-    button.btn-icon.btn-icon--close(@click="viewChangeBoard = false")
+    input.board__title.input-self.input-self--board(:value="boardName.name" style="width: 100%" @input="nameBoard = $event.target.value" @blur="blur($event)"  @keydown="BoardKey($event)" v-focus)
   .board__container
     List(v-for="list in Lists" :key="list.id" :list="list")
     AddNewList(:boardId="$route.params.id")
@@ -36,8 +34,16 @@ export default {
       this.viewChangeBoard = false
     },
     blur(e) {
-      if (!e.relatedTarget || !e.relatedTarget.classList.contains('btn-icon--check'))
+      if (!e.relatedTarget || !e.relatedTarget.classList.contains('btn-icon--check')) {
         this.viewChangeBoard = false
+      }
+    },
+    BoardKey(e) {
+      if (e.code == 'Enter') {
+        this.changeNameBoard(this.boardName.id)
+      } else if (e.code == 'Escape') {
+        this.viewChangeBoard = false
+      }
     },
   },
   directives: {

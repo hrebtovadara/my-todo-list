@@ -1,11 +1,11 @@
 <template lang="pug">
 .new-list.list
-  p.new-list__title(@click="openAddList") Добавить новый список
+  p.new-list__title(@click="openAddList") Add new task list
   .new-list__add(v-show="viewAdd")
     textarea.input.input__list(v-model="newList.name" @blur="blur($event)" ref="textarea3")
     .list__btn-add
-      button.btn.btn--cancel(@click="viewAdd = false") Отмена
-      button.btn.btn--add(@click="addNewList(boardId)") Добавить
+      button.btn.btn--cancel Cancel
+      button.btn.btn--add(@click="addNewList(boardId)") Add
 </template>
 
 <script>

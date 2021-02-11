@@ -1,12 +1,11 @@
 <template lang="pug">
 div.nav
   .nav__container
-
     router-link.nav__item.nav__item--home.nav__title(to="/home") home
     router-link.nav__item.nav__item--board(v-for="board in $store.state.boards" :to="'/board/' + board.id" )
       .circle(:style="'background-color:' + color[board.id]")
-      span {{board.name}}
-    button.btn(@click="newBoardView = true") Добавить
+      p {{board.name}}
+    button.nav__item.nav__item--home(@click="newBoardView = true") Add new board
   newBoard(v-if="newBoardView" @closePopup="closePopup")
 </template>
 
@@ -51,35 +50,32 @@ export default {
     align-items: flex-start
     justify-content: flex-start
 
-  &__title
-    color: #69665c
-    font-size: 20px
-    font-weight: bold
-
   &__item
     margin-bottom: 20px
     color: #69665c
     padding: 5px
     text-align: left
-    font-size: 14px
     display: flex
     align-items: center
     justify-content: flex-start
+    letter-spacing: 1px
+    font-family: 'Clean', sans-serif
+    font-size: 14px
+
     &--home
       margin-bottom: 20px
-      margin-left: 44px
+      &:hover
+        font-weight: bold
 
-.nav__btn
-  border: none
-  background: none
-  width: 60px
-  height: 60px
-  &-add
-    background: #95a1c5
+    & p
+      width: 140px
+      max-width: 140px
+      height: auto
+      word-wrap:  break-word
 
-.inline-svg-icon
-  width: 60px
-  height: 60px
+
+.router-link-active
+  font-weight: bold
 
 .circle
   min-width: 30px

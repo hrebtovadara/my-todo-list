@@ -15,8 +15,8 @@
   .list__task-add(v-show="viewAdd")
     textarea.input.input__list(v-model="newTask.text" @blur="blur($event)" ref="textarea2")
     .list__btn-add
-      button.btn.btn--cancel(@click="viewAdd = false" title="cancel") Отменить
-      button.btn.btn--add.dont-close(@click="addNewTask(list)" title="add") Добавить
+      button.btn.btn--cancel(@click="viewAdd = false" title="cancel") Cancel
+      button.btn.btn--add.dont-close(@click="addNewTask(list)" title="add") Add
 </template>
 
 <script>
