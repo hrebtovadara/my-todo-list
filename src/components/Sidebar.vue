@@ -2,7 +2,7 @@
 div.nav
   .nav__container
 
-    router-link.nav__item--home.nav__title(to="/home") home
+    router-link.nav__item.nav__item--home.nav__title(to="/home") home
     router-link.nav__item.nav__item--board(v-for="board in $store.state.boards" :to="'/board/' + board.id" )
       .circle(:style="'background-color:' + color[board.id]")
       span {{board.name}}
@@ -15,19 +15,19 @@ import newBoard from '@/components/NewBoard'
 export default {
   data: () => ({
     newBoardView: false,
-    color: {1: '#d2ceff', 2: '#d1e5f7', 3: '#ffcece', 4: '#daf2d6'}
+    color: { 1: '#d2ceff', 2: '#d1e5f7', 3: '#ffcece', 4: '#daf2d6' },
   }),
   filters: {
     notWide(name, wide) {
       return wide ? name : name[0].toUpperCase()
     },
   },
-  components: {newBoard},
+  components: { newBoard },
   methods: {
     closePopup() {
       this.newBoardView = false
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -86,6 +86,4 @@ export default {
   height: 30px
   border-radius: 50%
   margin-right: 10px
-
-
 </style>

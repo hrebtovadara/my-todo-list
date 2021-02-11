@@ -29,14 +29,14 @@ export default {
     wide: true,
     viewAdd: false,
     viewChangeTitle: false,
-    newTask:  {
+    newTask: {
       id: '',
       listId: '',
       text: '',
       status: true,
     },
     nameList: 'name',
-    viewMenu: false
+    viewMenu: false,
   }),
   computed: {
     myList: {
@@ -44,36 +44,42 @@ export default {
         return this.list.tasks
       },
       set(value) {
-        this.$store.commit('updateList', {value, boardId: this.$route.params.id, listId: this.list.id})
-      }
-    }
+        this.$store.commit('updateList', {
+          value,
+          boardId: this.$route.params.id,
+          listId: this.list.id,
+        })
+      },
+    },
   },
-  components: {Task, draggable},
+  components: { Task, draggable },
   props: ['list'],
   methods: {
     addNewTask(list) {
       if (!this.newTask.text) return
       this.newTask.id = this.$store.state.data.countTasks
       this.newTask.listId = list.id
-      this.$store.commit('addNewTask', {task: {...this.newTask}, idBoard: this.$route.params})
+      this.$store.commit('addNewTask', {
+        task: { ...this.newTask },
+        boardId: this.$route.params.id,
+      })
       this.newTask.text = ''
       this.viewAdd = false
     },
     changeNameList(list) {
       if (this.nameList) {
-        this.$store.commit('changeList', {list: list, name: this.nameList})
+        this.$store.commit('changeList', { list: list, name: this.nameList })
         this.viewChangeTitle = false
       }
     },
     openAddTask() {
-      setTimeout(()=>  this.$refs.textarea2.focus(), 10)
+      setTimeout(() => this.$refs.textarea2.focus(), 10)
       this.viewAdd = true
     },
     blur(e) {
       if (!e.relatedTarget || !e.relatedTarget.classList.contains('btn--add')) this.viewAdd = false
-    }
-  }
-
+    },
+  },
 }
 </script>
 
@@ -137,7 +143,4 @@ export default {
   justify-content: space-between
   width: 200px
   margin: 0 auto
-
-
-
 </style>

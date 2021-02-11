@@ -8,7 +8,7 @@ div.task
     textarea.input.input__task(:value="task.text" @change="text = $event.target.value" @blur="blur($event)" ref="textarea" autofocus)
     .task__btn-change
       button.btn-icon.btn-icon--check.dont-close(@click="changeTextTask(task)" )
-      button.btn-icon.btn-icon--del.dont-close(@click="$store.commit('deleteTask', {task, idBoard: $route.params})" title="delete")
+      button.btn-icon.btn-icon--del.dont-close(@click="$store.commit('deleteTask', {task, boardId: $route.params.id})" title="delete")
       button.btn-icon.btn-icon--close
 
 </template>
@@ -19,24 +19,24 @@ export default {
     viewEdit: false,
     text: '',
     viewbutton: false,
-    active: false
+    active: false,
   }),
   props: ['task'],
   methods: {
     openChangeTask() {
-      setTimeout(()=>  this.$refs.textarea.focus(), 10)
+      setTimeout(() => this.$refs.textarea.focus(), 10)
       this.viewEdit = true
     },
     changeTextTask(task) {
-      if(!this.task.text) return
-      this.$store.commit('changeTask', {task, text: this.text, idBoard: this.$route.params})
+      if (!this.task.text) return
+      this.$store.commit('changeTask', { task, text: this.text, boardId: this.$route.params.id })
       this.viewEdit = false
     },
     blur(e) {
-      if (!e.relatedTarget || !e.relatedTarget.classList.contains('dont-close'))this.viewEdit = false
-    }
-  }
-
+      if (!e.relatedTarget || !e.relatedTarget.classList.contains('dont-close'))
+        this.viewEdit = false
+    },
+  },
 }
 </script>
 

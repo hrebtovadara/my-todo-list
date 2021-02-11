@@ -131,20 +131,20 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
-    addNewTask(state, { task, idBoard }) {
-      searchIndex(state, { boardId: idBoard.id, listId: task.listId }).tasks.push(task)
+    addNewTask(state, { task, boardId }) {
+      searchIndex(state, { boardId, listId: task.listId }).tasks.push(task)
       state.data.countTasks++
     },
-    changeTask: (state, { task, text, idBoard }) =>
+    changeTask: (state, { task, text, boardId }) =>
       (searchIndex(state, {
-        boardId: idBoard.id,
+        boardId,
         listId: task.listId,
         taskId: task.id,
       }).text = text),
-    deleteTask(state, { task, idBoard }) {
+    deleteTask(state, { task, boardId }) {
       const { list, taskIndex } = searchIndex(
         state,
-        { boardId: idBoard.id, listId: task.listId, taskId: task.id },
+        { boardId, listId: task.listId, taskId: task.id },
         true
       )
       list.tasks.splice(taskIndex, 1)
