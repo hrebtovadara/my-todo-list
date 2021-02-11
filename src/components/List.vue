@@ -33,7 +33,7 @@ export default {
       id: '',
       listId: '',
       text: '',
-      status: '',
+      status: true,
     },
     nameList: 'name',
     viewMenu: false

@@ -1,8 +1,22 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createPersistedState from "vuex-persistedstate";
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
+
+function searchIndex(state, { boardId, listId, taskId }, returnIndex = false) {
+  const boardIndex = state.boards.findIndex((elem) => elem.id == boardId)
+  if (!~boardIndex) return
+  const board = state.boards[boardIndex]
+  if (!listId) return returnIndex ? boardIndex : board
+  const listIndex = board.list.findIndex((elem) => elem.id == listId)
+  if (!~listIndex) return
+  const list = board.list[listIndex]
+  if (!taskId) return returnIndex ? { board, listIndex } : list
+  const taskIndex = list.tasks.findIndex((elem) => elem.id == taskId)
+  if (!~taskIndex) return
+  return returnIndex ? { list, taskIndex } : list.tasks[taskIndex]
+}
 
 export default new Vuex.Store({
   state: {
@@ -26,27 +40,27 @@ export default new Vuex.Store({
                 id: 1,
                 listId: 1,
                 text: 'Принять участие в совете в Ривенделле',
-                status: ' ',
-               },
+                status: false,
+              },
               {
                 id: 2,
                 listId: 1,
                 text: 'Помочь Фродо',
-                status: ' ',
+                status: false,
               },
               {
                 id: 3,
                 listId: 1,
                 text: 'Найти и спасти Мерри и Пиппина',
-                status: ' ',
+                status: false,
               },
               {
                 id: 4,
                 listId: 1,
                 text: 'Принять участие в Битве у Хельмовой Пади',
-                status: ' ',
-              }
-            ]
+                status: false,
+              },
+            ],
           },
           {
             id: 2,
@@ -58,29 +72,29 @@ export default new Vuex.Store({
                 id: 5,
                 listId: 2,
                 text: 'Прибыть в Ривенделл',
-                status: ' ',
+                status: false,
               },
               {
                 id: 6,
                 listId: 2,
                 text: 'Уничтожить кольцо',
-                status: ' ',
+                status: false,
               },
               {
                 id: 7,
                 listId: 2,
                 text: 'Попросить прядь волос Галадриэль',
-                status: ' ',
+                status: false,
               },
               {
                 id: 8,
                 listId: 2,
                 text: 'Перебить больше орков, чем эльф',
-                status: ' ',
+                status: false,
               },
-            ]
-          }
-        ]
+            ],
+          },
+        ],
       },
       {
         id: 2,
@@ -96,82 +110,73 @@ export default new Vuex.Store({
                 id: 9,
                 listId: 3,
                 text: 'Угостить гномов ужином',
-                status: ' ',
+                status: false,
               },
               {
                 id: 10,
                 listId: 3,
                 text: 'Не забыть носовой платок!',
-                status: ' ',
+                status: false,
               },
               {
                 id: 11,
                 listId: 3,
                 text: 'Отправиться в нежданное путешествие',
-                status: ' ',
+                status: false,
               },
-            ]
-        }]
-      }
+            ],
+          },
+        ],
+      },
     ],
-
   },
   mutations: {
-    addNewTask(state, {task, idBoard}) {
-      const indexBoard = state.boards.findIndex(elem => elem.id == idBoard.id)
-      const indexList = state.boards[indexBoard].list.findIndex(elem => elem.id == task.listId)
-      state.boards[indexBoard].list[indexList].tasks.push(task)
+    addNewTask(state, { task, idBoard }) {
+      searchIndex(state, { boardId: idBoard.id, listId: task.listId }).tasks.push(task)
       state.data.countTasks++
     },
-    changeTask(state, {task, text, idBoard}) {
-      const iBoard = state.boards.findIndex(elem => elem.id == idBoard.id)
-      const iList = state.boards[iBoard].list.findIndex(elem => elem.id === task.listId)
-      let index = state.boards[iBoard].list[iList].tasks.findIndex(elem => elem.id === task.id)
-      state.boards[iBoard].list[iList].tasks[index].text = text
-    },
-    deleteTask(state, {task, idBoard}) {
-      const iBoard = state.boards.findIndex(elem => elem.id == idBoard.id)
-      const iList = state.boards[iBoard].list.findIndex(elem => elem.id === task.listId)
-      let index = state.boards[iBoard].list[iList].tasks.findIndex(elem => elem.id === task.id)
-      state.boards[iBoard].list[iList].tasks.splice(index, 1)
+    changeTask: (state, { task, text, idBoard }) =>
+      (searchIndex(state, {
+        boardId: idBoard.id,
+        listId: task.listId,
+        taskId: task.id,
+      }).text = text),
+    deleteTask(state, { task, idBoard }) {
+      const { list, taskIndex } = searchIndex(
+        state,
+        { boardId: idBoard.id, listId: task.listId, taskId: task.id },
+        true
+      )
+      list.tasks.splice(taskIndex, 1)
     },
     addNewList(state, payload) {
       state.list.push(payload)
       state.data.countLists++
     },
-    changeList(state, {list, name}) {
-      console.log(list)
-      const iBoard = state.boards.findIndex(elem => elem.id == list.boardsId)
-      const index = state.boards[iBoard].list.findIndex(elem => elem.id === list.id)
-      state.boards[iBoard].list[index].name = name
+    changeList(state, { list, name }) {
+      searchIndex(state, { boardId: list.boardsId, listId: list.id }).name = name
     },
     deleteList(state, list) {
-      const iBoard = state.boards.findIndex(elem => elem.id == list.boardsId)
-      const iList= state.boards[iBoard].list.findIndex(elem => elem.id === list.id)
+      const iBoard = state.boards.findIndex((elem) => elem.id == list.boardsId)
+      const iList = state.boards[iBoard].list.findIndex((elem) => elem.id === list.id)
       state.boards[iBoard].list.splice(iList, 1)
     },
     addNewBoard(state, payload) {
       state.boards.push(payload)
       state.data.countBoards++
     },
-    changeNameBoard(state, {id, name}) {
-      let index = state.boards.findIndex(elem => elem.id === id)
-      state.boards[index].name = name
+    changeNameBoard(state, { id, name }) {
+      searchIndex(state, { boardId: id }).name = name
     },
-    updateList(state, {value, boardId, listId}) {
-      const iBoard = state.boards.findIndex(elem => elem.id == boardId)
-      const iList = state.boards[iBoard].list.findIndex(elem => elem.id === listId)
-      state.boards[iBoard].list[iList].tasks = value
-      state.boards[iBoard].list[iList].tasks.forEach(elem => elem.listId = listId)
-      console.log(state.boards[iBoard].list[iList].tasks)
-    }
+    updateList(state, { value, boardId, listId }) {
+      const list = searchIndex(state, { boardId, listId })
+      list.tasks = value
+      list.tasks.forEach((elem) => (elem.listId = listId))
+      console.log(list.tasks)
+    },
   },
-  actions: {
-  },
-  modules: {
-  },
+  actions: {},
+  modules: {},
   plugins: [createPersistedState()],
-  strict: process.env.NODE_ENV !== 'production'
+  strict: process.env.NODE_ENV !== 'production',
 })
-
-

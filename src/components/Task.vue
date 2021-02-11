@@ -1,7 +1,7 @@
 <template lang="pug">
 div.task
   .task__view(v-show="!viewEdit" :class="{active}")
-    input.checkbox(type="checkbox" :id="'checkbox-'+ task.id" v-model="active")
+    input.checkbox(type="checkbox" :id="'checkbox-'+ task.id" :value="active" @change="activeTask()")
     label.task__text.label(:for="'checkbox-'+ task.id" :style="'text-decoration:' + (active?'line-through': 'none')") {{task.text}}
     button.btn-icon.btn-icon--change(@click="openChangeTask()" title="change")
   .task-edit(v-show="viewEdit")
