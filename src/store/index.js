@@ -28,35 +28,35 @@ export default new Vuex.Store({
     boards: [
       {
         id: 1,
-        name: 'Братство кольца',
+        name: 'Дела на сегодня',
         list: [
           {
             id: 1,
             boardsId: 1,
-            name: 'Дела Леголаса',
+            name: 'Мои делишки',
             tasks: [
               {
                 id: 1,
                 listId: 1,
-                text: 'Принять участие в совете в Ривенделле',
+                text: 'Разбить что-нибудь',
                 active: false,
               },
               {
                 id: 2,
                 listId: 1,
-                text: 'Помочь Фродо',
+                text: 'Смотреть в окно на голубя',
                 active: false,
               },
               {
                 id: 3,
                 listId: 1,
-                text: 'Найти и спасти Мерри и Пиппина',
+                text: 'Поспать',
                 active: false,
               },
               {
                 id: 4,
                 listId: 1,
-                text: 'Принять участие в Битве у Хельмовой Пади',
+                text: 'Ещё поспать',
                 active: false,
               },
             ],
@@ -64,31 +64,31 @@ export default new Vuex.Store({
           {
             id: 2,
             boardsId: 1,
-            name: 'Гимли, сын Глоина',
+            name: 'Уход за человеком',
             icon: '',
             tasks: [
               {
                 id: 5,
                 listId: 2,
-                text: 'Прибыть в Ривенделл',
+                text: 'Принести человеку нормальную еду',
                 active: false,
               },
               {
                 id: 6,
                 listId: 2,
-                text: 'Уничтожить кольцо',
+                text: 'Помочь работать',
                 active: false,
               },
               {
                 id: 7,
                 listId: 2,
-                text: 'Попросить прядь волос Галадриэль',
+                text: 'Куснуть за то, что скинул с колен',
                 active: false,
               },
               {
                 id: 8,
                 listId: 2,
-                text: 'Перебить больше орков, чем эльф',
+                text: 'Попробовать съесть свою шерсть',
                 active: false,
               },
             ],
@@ -97,29 +97,29 @@ export default new Vuex.Store({
       },
       {
         id: 2,
-        name: 'Поход Торина Дубощита',
+        name: 'Позже',
         list: [
           {
             id: 3,
             boardsId: 2,
-            name: 'Бильбо Беггинс',
+            name: 'В обозримом будущем',
             tasks: [
               {
                 id: 9,
                 listId: 3,
-                text: 'Угостить гномов ужином',
+                text: 'Залезть на стол и найти вкусненькое',
                 active: false,
               },
               {
                 id: 10,
                 listId: 3,
-                text: 'Не забыть носовой платок!',
+                text: 'Узнать, кто ворует делишки из лотка',
                 active: false,
               },
               {
                 id: 11,
                 listId: 3,
-                text: 'Отправиться в нежданное путешествие',
+                text: 'Поработить человечество',
                 active: false,
               },
             ],

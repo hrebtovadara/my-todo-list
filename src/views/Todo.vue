@@ -6,8 +6,8 @@ div.board
   .board-title.opacity-btn(v-if="viewChangeBoard")
     input.board__title.input-self.input-self--board(:value="boardName.name" style="width: 100%" @input="nameBoard = $event.target.value" @blur="blur($event)" @keydown="KeyValue($event)" maxlength="72" v-focus)
   .board__container
-    List(v-for="list in Lists" :key="list.id" :list="list")
     AddNewList(:boardId="$route.params.id" ref="addNewList")
+    List(v-for="list in Lists" :key="list.id" :list="list")
     .board-img
       img(src="@/assets/image/Screenshot.png")
       .cat-eyes.cat-eyes--left

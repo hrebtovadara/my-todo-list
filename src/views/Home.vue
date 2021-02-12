@@ -1,7 +1,6 @@
 <template lang="pug">
 .home-page
   h1.home-page__title Welcome to your board
-  .home-page__line
   p.home-page__subtitle Семь колец - искусным гномам во дворце подгорном. Девять- людям Средиземья, на смерть обреченным. А одно - владыке тьмы на престоле черном, в Мордоре, где ночь и день - суть одно и то же.
   .home-page__container
     .home-page__board(v-for="(board, index) in $store.state.boards" :key="index" @click="$router.push({ path: `/board/${board.id}` })") {{board.name}}
@@ -9,17 +8,18 @@
 
 <script>
 export default {
-name: "Home.vue"
+  name: 'Home.vue',
 }
 </script>
 
 <style scoped lang="sass">
 .home-page
-  padding: 45px 60px 45px 150px
+  padding: 135px 60px 45px 186px
   color: #7b776b
-  width: 100%
-  height: 100vh
   background-color: #ffffff
+  min-width: 1300px
+  border-radius: 10px
+  margin: 90px 60px
   &__title
     text-transform: uppercase
     font-size: 50px
@@ -53,12 +53,4 @@ name: "Home.vue"
     padding: 20px
     &:hover
       background: #e3dec7
-
-  &__line
-    width: 100px
-    height: 2px
-    background-color: #7b776b
-    margin: 0 auto
-
-
 </style>
