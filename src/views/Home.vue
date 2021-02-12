@@ -4,7 +4,7 @@
   .home-page__line
   p.home-page__subtitle Семь колец - искусным гномам во дворце подгорном. Девять- людям Средиземья, на смерть обреченным. А одно - владыке тьмы на престоле черном, в Мордоре, где ночь и день - суть одно и то же.
   .home-page__container
-    .home-page__board(v-for="board in $store.state.boards" :key="board.id" @click="$router.push({ path: `/board/${board.id}` })") {{board.name}}
+    .home-page__board(v-for="(board, index) in $store.state.boards" :key="index" @click="$router.push({ path: `/board/${board.id}` })") {{board.name}}
 </template>
 
 <script>

@@ -7,7 +7,7 @@ import Home from '../views/Home.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', redirect: '/home' },
+  { path: '/', redirect: '/board/1' },
   {
     path: '/home',
     component: Home
