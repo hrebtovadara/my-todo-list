@@ -8,6 +8,13 @@ div.board
   .board__container
     List(v-for="list in Lists" :key="list.id" :list="list")
     AddNewList(:boardId="$route.params.id" ref="addNewList")
+    .board-img
+      img(src="@/assets/image/Screenshot.png")
+      .cat-eyes.cat-eyes--left
+        .cat-eyeball
+      .cat-eyes.cat-eyes--right
+        .cat-eyeball
+
 </template>
 
 <script>
@@ -59,6 +66,44 @@ export default {
 </script>
 
 <style lang="sass">
+.board-img
+  position: fixed
+  bottom: 120px
+  right: 120px
+  & img
+    width: 200px
+    height: 200px
+.cat-eyes
+    position: absolute
+    width: 12px
+    height: 12px
+    border-radius: 50%
+    background-color: #ffffff
+    &--left
+      top: 53px
+      left: 85px
+      animation: catsWink 6s infinite .3s
+    &--right
+      top: 53px
+      left: 113px
+      animation: catsWink 6s infinite
+.cat-eyeball
+  position: absolute
+  top: 4px
+  left: 4px
+  border-radius: 50%
+  width: 4px
+  height: 4px
+  background: #000000
+
+@keyframes catsWink
+  1%
+    top: 60px
+    height: 0px
+  2%
+    top: 53px
+    height: 12px
+
 
 ::-webkit-scrollbar
   width: 6px
@@ -80,7 +125,8 @@ export default {
     display: flex
     align-items: flex-start
     overflow-x: auto
-    width: 75%
+    width: 70%
+    min-width: 1000px
     position: fixed
     top: 190px
     left: 320px
