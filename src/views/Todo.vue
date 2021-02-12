@@ -2,11 +2,12 @@
 div.board
   .board-title(v-if="!viewChangeBoard")
     p.board__title(@click="viewChangeBoard = true") {{boardName.name}}
+    button.new-list__btn(@click="$refs.addNewList.openAddList()" v-show="!viewAdd")
   .board-title.opacity-btn(v-if="viewChangeBoard")
-    input.board__title.input-self.input-self--board(:value="boardName.name" style="width: 100%" @input="nameBoard = $event.target.value" @blur="blur($event)" @keydown="BoardKey($event)" maxlength="72" v-focus)
+    input.board__title.input-self.input-self--board(:value="boardName.name" style="width: 100%" @input="nameBoard = $event.target.value" @blur="blur($event)" @keydown="KeyValue($event)" maxlength="72" v-focus)
   .board__container
     List(v-for="list in Lists" :key="list.id" :list="list")
-    AddNewList(:boardId="$route.params.id")
+    AddNewList(:boardId="$route.params.id" ref="addNewList")
 </template>
 
 <script>
@@ -39,7 +40,7 @@ export default {
         this.viewChangeBoard = false
       }
     },
-    BoardKey(e) {
+    KeyValue(e) {
       if (e.code == 'Enter') {
         this.changeNameBoard(this.boardName.id)
       } else if (e.code == 'Escape') {
@@ -79,11 +80,11 @@ export default {
     display: flex
     align-items: flex-start
     overflow-x: auto
-    width: 92%
+    width: 75%
     position: fixed
-    top: 100px
-    left: 260px
-    bottom: 20px
+    top: 190px
+    left: 320px
+    bottom: 110px
 
   &__title
     color: #69665c
@@ -104,5 +105,5 @@ export default {
 .board-title
   display: flex
   align-items: center
-  justify-content: flex-start
+  justify-content: space-between
 </style>

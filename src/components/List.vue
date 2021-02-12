@@ -4,10 +4,11 @@
     p(@click="openChangeTitle()") Edit...
     p(@click="$store.commit('deleteList', list)" ) Delete
   .list__title(v-show="!viewChangeTitle")
-    p {{list.name.length > 17? list.name.slice(0, 20) + '...': list.name}}
+    p.list__title--short(v-show="!viewTitleFull" @click="viewTitleFull = true") {{list.name.length > 20? list.name.slice(0, 20) + '...': list.name}}
+    p.list__title--full(v-show="viewTitleFull"  @click="viewTitleFull = false") {{list.name}}
     button.btn-icon--menu.btn-menu.list__btn-menu(@click="viewMenu = true")
   .list__title-change.opacity-btn(v-show="viewChangeTitle")
-    input.input-self.input-self--list(:value="list.name" @change="nameList = $event.target.value" @blur="blur($event)" ref="inputTitle")
+    input.input-self.input-self--list(:value="list.name" @input="nameList = $event.target.value" @blur="blur($event)" @keydown="KeyValue($event)" ref="inputTitle" )
     button.btn-icon.btn-icon--check.dont-close(@click="changeNameList(list)")
   draggable.list__task(v-model="myList" group="people" @start="drag=true" @end="drag=false")
     Task(v-for="task in myList" :key="task.id" :task="task")
@@ -17,6 +18,7 @@
     .list__btn-add
       button.btn.btn--cancel(@click="viewAdd = false" title="cancel") Cancel
       button.btn.btn--add.dont-close(@click="addNewTask(list)" title="add") Add
+
 </template>
 
 <script>
@@ -37,6 +39,7 @@ export default {
     },
     nameList: '',
     viewMenu: false,
+    viewTitleFull: false,
   }),
   computed: {
     myList: {
@@ -68,6 +71,7 @@ export default {
     },
     changeNameList(list) {
       if (this.nameList) {
+        console.log('123' + this.nameList)
         this.$store.commit('changeList', { list: list, name: this.nameList })
         this.viewChangeTitle = false
       }
@@ -83,9 +87,17 @@ export default {
     },
     blur(e) {
       if (!e.relatedTarget || !e.relatedTarget.classList.contains('dont-close')) {
+        this.changeNameList(this.list)
         this.viewAdd = false
+      }
+      this.viewChangeTitle = false
+    },
+    KeyValue(e) {
+      if (e.code == 'Enter') {
+        this.changeNameList(this.list)
+        console.log('enter')
+      } else if (e.code == 'Escape') {
         this.viewChangeTitle = false
-        console.log(this.viewChangeTitle)
       }
     },
   },
@@ -139,13 +151,18 @@ export default {
 
   &__title
     font-size: 17px
+    min-height: 14px
     padding: 10px
     text-align: left
     position: relative
     font-weight: bold
     display: flex
-    align-items: center
+    align-items: flex-start
     justify-content: space-between
+
+    &--full
+      word-wrap: break-word
+
     &-change
       display: flex
       align-items: center
@@ -156,12 +173,16 @@ export default {
         color: #69665c
         width: 200px
         margin-right: 10px
+    & p
+      width: 200px
+      padding-top: 3px
 
 
   &__task
     width: 260px
     overflow-y: auto
     max-height: 600px
+
 
 
 .list__btn-add

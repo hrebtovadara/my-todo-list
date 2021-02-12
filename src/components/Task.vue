@@ -3,7 +3,7 @@ div.task
   .task__view(v-show="!viewEdit" :class="task.active? 'active' : ''")
     input.checkbox(type="checkbox" :id="'checkbox-'+ task.id" :checked="task.active" @change="$store.commit('activeTask', {boardId: $route.params.id, task})")
     label.task__text.label(:for="'checkbox-'+ task.id" :style="'text-decoration:' + (task.active ? 'line-through': 'none')") {{task.text}}
-    button.btn-icon.btn-icon--change(@click="openChangeTask()" title="change")
+    button.btn-icon.btn-icon--change(@click="openChangeTask()" title="change" style="margin-left: 15px")
   .task-edit(v-show="viewEdit")
     textarea.input-self.input-self--task(:value="task.text" @change="text = $event.target.value" @blur="blur($event)" ref="textarea")
     .task__btn-change
@@ -42,8 +42,7 @@ export default {
 <style scoped lang="sass">
 .task
   color: #69665c
-  margin-right: 15px
-  padding: 10px 0
+  padding: 7px 0
   text-align: left
   position: relative
   &:hover
@@ -61,7 +60,6 @@ export default {
     font-family: 'Clean', sans-serif
     min-height: 16px
     padding-top: 2px
-
   &__edit
     width: 230px
 

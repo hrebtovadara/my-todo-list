@@ -5,7 +5,7 @@ div.nav
     router-link.nav__item.nav__item--board(v-for="board in $store.state.boards" :to="'/board/' + board.id" )
       .circle(:style="'background-color:' + color[board.id]")
       p {{board.name}}
-    button.nav__item.nav__item--home(@click="newBoardView = true") Add new board
+    button.nav__item.nav__item--home(@click="newBoardView = true" style="color: #c6c4b9") Add new board +
   newBoard(v-if="newBoardView" @closePopup="closePopup")
 </template>
 
@@ -33,7 +33,7 @@ export default {
 <style lang="sass">
 .nav
   width: 260px
-  min-height: 100vh
+  height: 660px
   margin-top: 118px
   padding: 20px 10px 20px 64px
   position: absolute
