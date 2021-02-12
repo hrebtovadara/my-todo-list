@@ -34,7 +34,6 @@ export default new Vuex.Store({
             id: 1,
             boardsId: 1,
             name: 'Дела Леголаса',
-            icon: '',
             tasks: [
               {
                 id: 1,
@@ -104,7 +103,6 @@ export default new Vuex.Store({
             id: 3,
             boardsId: 2,
             name: 'Бильбо Беггинс',
-            icon: '',
             tasks: [
               {
                 id: 9,

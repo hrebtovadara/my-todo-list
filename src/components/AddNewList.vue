@@ -2,7 +2,7 @@
 .new-list.list
   p.new-list__title(@click="openAddList") Add new task list
   .new-list__add(v-show="viewAdd")
-    textarea.input.input__list(v-model="newList.name" @blur="blur($event)" ref="textarea3")
+    textarea.input.input__list(v-model="newNameList" @blur="blur($event)" ref="textarea3")
     .list__btn-add
       button.btn.btn--cancel Cancel
       button.btn.btn--add(@click="addNewList(boardId)") Add
@@ -12,21 +12,21 @@
 export default {
   data: () => ({
     viewAdd: false,
-    newList: {
-      id: '',
-      boardId: '',
-      name: '',
-      icon: '',
-    },
+    newNameList: '',
   }),
   props: ['boardId'],
   methods: {
     addNewList(boardId) {
-      if (!this.newList.name) return
-      this.newList.boardId = boardId
-      this.newList.id = this.$store.state.data.countLists
-      this.$store.commit('addNewList', { ...this.newList })
-      this.newList.name = ''
+      if (!this.newNameList) return
+        let list = {
+            id: this.$store.state.data.countLists,
+            boardId: boardId,
+            name: this.newNameList,
+            tasks: [],
+        }
+
+      this.$store.commit('addNewList', { ...list })
+      this.newNameList = ''
       this.viewAdd = false
     },
     openAddList() {

@@ -3,7 +3,7 @@
   .dark-theme-fon(@click="$emit('closePopup')")
   .new-board
     p.new-board__title Введите название доски:
-    textarea.input.input__list(v-model="newBoard.name" v-focus)
+    textarea.input.input__list(v-model="newNameBoard" maxlength="72")
     button.btn(@click="addNewBoard") Добавить
     button.btn-icon.btn-icon--close.new-board__close(@click="$emit('closePopup')")
 
@@ -12,19 +12,21 @@
 <script>
 export default {
   data: () => ({
-    newBoard: {
-      id: '',
-      name: '',
-      color: '#f1e1eb',
-    },
+    newNameBoard: '',
   }),
   methods: {
     addNewBoard() {
-      if (!this.newBoard.name) return
-      this.newBoard.id = this.$store.state.data.countBoards
-      this.$store.commit('addNewBoard', { ...this.newBoard })
+      if (!this.newNameBoard) return
+        let board = {
+            id: this.$store.state.data.countBoards,
+            name: this.newNameBoard,
+            list: [],
+        }
+        console.log('board')
+        console.log(board)
+      this.$store.commit('addNewBoard', { ...board })
       this.$emit('closePopup')
-      this.newBoard.name = ''
+      this.newNameBoard = ''
     },
   },
 }

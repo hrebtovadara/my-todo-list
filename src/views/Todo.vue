@@ -3,7 +3,7 @@ div.board
   .board-title(v-if="!viewChangeBoard")
     p.board__title(@click="viewChangeBoard = true") {{boardName.name}}
   .board-title.opacity-btn(v-if="viewChangeBoard")
-    input.board__title.input-self.input-self--board(:value="boardName.name" style="width: 100%" @input="nameBoard = $event.target.value" @blur="blur($event)"  @keydown="BoardKey($event)" v-focus)
+    input.board__title.input-self.input-self--board(:value="boardName.name" style="width: 100%" @input="nameBoard = $event.target.value" @blur="blur($event)" @keydown="BoardKey($event)" maxlength="72" v-focus)
   .board__container
     List(v-for="list in Lists" :key="list.id" :list="list")
     AddNewList(:boardId="$route.params.id")
@@ -35,6 +35,7 @@ export default {
     },
     blur(e) {
       if (!e.relatedTarget || !e.relatedTarget.classList.contains('btn-icon--check')) {
+        this.changeNameBoard(this.boardName.id)
         this.viewChangeBoard = false
       }
     },
