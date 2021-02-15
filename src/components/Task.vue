@@ -6,7 +6,7 @@ div.task
     p.task__text(:style="'text-decoration:' + (task.active ? 'line-through': 'none')" @click="openChangeTask()")  {{task.text}}
     button.btn-icon.btn-icon--del.dont-close(@click="$store.commit('deleteTask', {task, boardId: $route.params.id})" title="delete")
   .task-edit(v-show="viewEdit")
-    textarea.input-self.input-self--task(:value="task.text" @change="text = $event.target.value" @blur="blur($event, task)" ref="textarea")
+    textarea.input-self.input-self--task(:value="task.text" @input="text = $event.target.value" @blur="blur($event, task)" ref="textarea" @keydown="KeyValue($event, task)")
 
 
 </template>
@@ -25,6 +25,7 @@ export default {
       this.viewEdit = true
     },
     changeTextTask(task) {
+      console.log(this.text)
       if (this.text) {
         this.$store.commit('changeTask', { task, text: this.text, boardId: this.$route.params.id })
       }
@@ -33,6 +34,13 @@ export default {
     blur(e, task) {
       if (!e.relatedTarget || !e.relatedTarget.classList.contains('dont-close')) {
         this.changeTextTask(task)
+        this.viewEdit = false
+      }
+    },
+    KeyValue(e, task) {
+      if (e.code == 'Enter') {
+        this.changeTextTask(task)
+      } else if (e.code == 'Escape') {
         this.viewEdit = false
       }
     },
