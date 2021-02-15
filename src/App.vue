@@ -7,6 +7,8 @@
   .circle-fon.circle-fon--green
   .circle-fon.circle-fon--blue
   .circle-fon.circle-fon--pink
+  .cat-fall
+    img(src="@/assets/image/cat-fall.png")
 </template>
 
 <script>
@@ -75,6 +77,25 @@ export default {
     right: -50px
     top: -50px
     animation: goCirclePink 30s linear infinite
+.cat-fall
+  width: 200px
+  position: absolute
+  top: -200px
+  left: 20px
+  animation: fallingCat 25s linear infinite 10s
+  animation-direction: normal
+  transform: rotate(-45deg)
+  z-index: 7
+  img
+    width: 200px
+
+@keyframes fallingCat
+
+  15%
+    top: 110%
+  100%
+    top: 110%
+
 
 
 @keyframes goCircleGreen

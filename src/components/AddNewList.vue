@@ -5,7 +5,7 @@
     textarea.input.input__list(v-model="newNameList" @blur="blur($event)" ref="textarea3")
     .list__btn-add
       button.btn.btn--cancel Cancel
-      button.btn.btn--add(@click="addNewList(boardId)") Add
+      button.btn.btn--ad.dont-close(@click="addNewList(boardId)") Add
 </template>
 
 <script>
@@ -34,7 +34,9 @@ export default {
       this.viewAdd = true
     },
     blur(e) {
-      if (!e.relatedTarget || !e.relatedTarget.classList.contains('btn--add')) this.viewAdd = false
+      if (!e.relatedTarget || !e.relatedTarget.classList.contains('dont-close')) {
+        this.viewAdd = false
+      }
     },
   },
 }

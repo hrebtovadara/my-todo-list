@@ -2,7 +2,7 @@
 div.board
   .board-title(v-if="!viewChangeBoard")
     p.board__title(@click="viewChangeBoard = true") {{boardName.name}}
-    button.new-list__btn(@click="$refs.addNewList.openAddList()" v-show="!viewAdd")
+    button.new-list__btn.dont-close(@click="$refs.addNewList.openAddList()" v-show="!viewAdd")
   .board-title.opacity-btn(v-if="viewChangeBoard")
     input.board__title.input-self.input-self--board(:value="boardName.name" style="width: 100%" @input="nameBoard = $event.target.value" @blur="blur($event)" @keydown="KeyValue($event)" maxlength="72" v-focus)
   .board__container
