@@ -1,8 +1,8 @@
+import './assets/css/main.sass'
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import './assets/css/main.sass'
 
 Vue.config.productionTip = false
 

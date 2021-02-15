@@ -177,7 +177,6 @@ export default new Vuex.Store({
     activeTask(state, { boardId, task }) {
       let taskActive = searchIndex(state, { boardId, listId: task.listId, taskId: task.id })
       taskActive.active = !taskActive.active
-      console.log(taskActive)
     },
   },
   actions: {},

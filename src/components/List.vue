@@ -115,13 +115,13 @@ export default {
 .list
   width: 300px
   min-height: 100px
-  background-color: #fff9de
+  background-color: $color-light-yellow
   border-radius: 5px
   margin: 30px 0 30px
   margin-left: 20px
   padding: 15px
   position: relative
-  color: #69665c
+  color: $color-brown
   flex-basis: 300px
   min-width: 300px
 
@@ -132,9 +132,9 @@ export default {
     width: 120px
     border-radius: 6px
     min-height: 80px
-    background-color: #ffffff
+    background-color: $color-white
     z-index: 4
-    border: 1px solid #f1eedf
+    border: 1px solid $color-light-gray
 
     & p
       width: 100%
@@ -145,7 +145,7 @@ export default {
       display: flex
       align-items: center
       justify-content: flex-start
-      border-bottom: 1px solid #f5f5f5
+      border-bottom: 1px solid $color-light-gray
       &:hover
         font-weight: bold
 
@@ -170,7 +170,7 @@ export default {
       padding: 10px
       & input
         font-weight: bold
-        color: #69665c
+        color: $color-brown
         width: 200px
         margin-right: 10px
     & p

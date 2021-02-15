@@ -1,7 +1,8 @@
 <template lang="pug">
 .home-page
-  h1.home-page__title Welcome to your board
-  p.home-page__subtitle Семь колец - искусным гномам во дворце подгорном. Девять- людям Средиземья, на смерть обреченным. А одно - владыке тьмы на престоле черном, в Мордоре, где ночь и день - суть одно и то же.
+  img(src="@/assets/image/cat-home.png" width="200px" )
+  h1.home-page__title Welcome to cat's board
+  p.home-page__subtitle Настоящий кот норовит прожить свою жизнь мирно - так, чтобы люди как можно меньше в его жизнь вмешивались. В этом <i>настоящие</i> коты очень похожи на <i>настоящих</i> людей.
   .home-page__container
     .home-page__board(v-for="(board, index) in $store.state.boards" :key="index" @click="$router.push({ path: `/board/${board.id}` })") {{board.name}}
 </template>
@@ -14,12 +15,14 @@ export default {
 
 <style scoped lang="sass">
 .home-page
-  padding: 135px 60px 45px 186px
+  padding: 35px 60px 45px 186px
   color: #7b776b
-  background-color: #ffffff
-  min-width: 1300px
+  background-color: $color-white
+  min-width: 600px
   border-radius: 10px
-  margin: 90px 60px
+  margin: 60px
+  & img
+    margin-bottom: 30px
   &__title
     text-transform: uppercase
     font-size: 50px
@@ -30,7 +33,7 @@ export default {
     margin: 0 auto
     font-size: 20px
     padding: 20px 0
-    width: 700px
+    width: 650px
     font-family: 'Clean', sans-serif
 
   &__container

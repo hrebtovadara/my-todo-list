@@ -1,11 +1,11 @@
 <template lang="pug">
-.new-list
-  .new-list__add.list(v-show="viewAdd")
-    p.new-list__title Add new task list
-    textarea.input.input__list(v-model="newNameList" @blur="blur($event)" ref="textarea3")
-    .list__btn-add
-      button.btn.btn--cancel Cancel
-      button.btn.btn--ad.dont-close(@click="addNewList(boardId)") Add
+
+.new-list.list(v-show="viewAdd")
+  p.new-list__title Add new task list
+  textarea.input.input__list(v-model="newNameList" @blur="blur($event)" ref="textarea3")
+  .list__btn-add
+    button.btn.btn--cancel Cancel
+    button.btn.btn--ad.dont-close(@click="addNewList(boardId)") Add
 </template>
 
 <script>
@@ -43,35 +43,34 @@ export default {
 </script>
 
 <style lang="sass">
-.new-list__btn
-  width: 20px
-  height: 20px
-  position: relative
-  margin: 40px 20px
 
-
-  &:before
-    position: absolute
-    content: ""
+.new-list
+  width: 300px
+  &__title
+    font-size: 17px
+    padding: 10px
+    text-align: center
+    font-weight: bold
+  &__btn
     width: 20px
-    height: 4px
-    top: 8px
-    left: 0px
-    background-color: #69665c
-    border-radius: 3px
-  &:after
-    position: absolute
-    content: ""
-    width: 4px
     height: 20px
-    top: 0
-    left: 8px
-    background-color: #69665c
-    border-radius: 3px
-
-.new-list__title
-  font-size: 17px
-  padding: 10px
-  text-align: center
-  font-weight: bold
+    position: relative
+    &:before
+      position: absolute
+      content: ""
+      width: 20px
+      height: 4px
+      top: 8px
+      left: 0px
+      background-color: $color-brown
+      border-radius: 3px
+    &:after
+      position: absolute
+      content: ""
+      width: 4px
+      height: 20px
+      top: 0
+      left: 8px
+      background-color: $color-brown
+      border-radius: 3px
 </style>

@@ -50,7 +50,7 @@ export default {
 
 <style scoped lang="sass">
 .task
-  color: #69665c
+  color: $color-brown
   padding: 7px 0
   text-align: left
   position: relative
@@ -95,7 +95,7 @@ export default {
     height: 2px
     top: 6px
     left: 0px
-    background-color: #69665c
+    background-color: $color-brown
     border-radius: 3px
   &:after
     position: absolute
@@ -104,6 +104,6 @@ export default {
     height: 14px
     top: 0
     left: 6px
-    background-color: #69665c
+    background-color: $color-brown
     border-radius: 3px
 </style>

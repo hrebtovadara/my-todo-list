@@ -17,13 +17,13 @@ export default {
   methods: {
     addNewBoard() {
       if (!this.newNameBoard) return
-        let board = {
-            id: this.$store.state.data.countBoards,
-            name: this.newNameBoard,
-            list: [],
-        }
-        console.log('board')
-        console.log(board)
+      let board = {
+        id: this.$store.state.data.countBoards,
+        name: this.newNameBoard,
+        list: [],
+      }
+      console.log('board')
+      console.log(board)
       this.$store.commit('addNewBoard', { ...board })
       this.$emit('closePopup')
       this.newNameBoard = ''
@@ -42,7 +42,7 @@ export default {
   z-index: 3
   width: 300px
   min-height: 200px
-  background-color: #fff9de
+  background-color: $color-light-yellow
   border-radius: 3px
   padding: 20px
   color: #1f233c

@@ -14,7 +14,12 @@ import newBoard from '@/components/NewBoard'
 export default {
   data: () => ({
     newBoardView: false,
-    color: { 1: '#d2ceff', 2: '#d1e5f7', 3: '#ffcece', 4: '#daf2d6' },
+    color: {
+      1: '#d2ceff',
+      2: '$color-light-blue',
+      3: '$color-light-pink:',
+      4: '$color-light-green',
+    },
   }),
   filters: {
     notWide(name, wide) {
@@ -42,7 +47,7 @@ export default {
   align-items: center
   justify-content: space-between
   z-index: 4
-  background: #ffffff
+  background: $color-white
 
   &__container
     display: flex
@@ -52,7 +57,7 @@ export default {
 
   &__item
     margin-bottom: 20px
-    color: #69665c
+    color: $color-brown
     padding: 5px
     text-align: left
     display: flex
