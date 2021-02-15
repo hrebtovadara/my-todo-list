@@ -2,14 +2,12 @@
 div.task
   .task__view(v-show="!viewEdit" :class="task.active? 'active' : ''")
     input.checkbox(type="checkbox" :id="'checkbox-'+ task.id" :checked="task.active" @change="$store.commit('activeTask', {boardId: $route.params.id, task})")
-    label.task__text.label(:for="'checkbox-'+ task.id" :style="'text-decoration:' + (task.active ? 'line-through': 'none')") {{task.text}}
-    button.btn-icon.btn-icon--change(@click="openChangeTask()" title="change" style="margin-left: 15px")
+    label.label(:for="'checkbox-'+ task.id")
+    p.task__text(:style="'text-decoration:' + (task.active ? 'line-through': 'none')" @click="openChangeTask()")  {{task.text}}
+    button.btn-icon.btn-icon--del.dont-close(@click="$store.commit('deleteTask', {task, boardId: $route.params.id})" title="delete")
   .task-edit(v-show="viewEdit")
-    textarea.input-self.input-self--task(:value="task.text" @change="text = $event.target.value" @blur="blur($event)" ref="textarea")
-    .task__btn-change
-      button.btn-icon.btn-icon--check.dont-close(@click="changeTextTask(task)" )
-      button.btn-icon.btn-icon--del.dont-close(@click="$store.commit('deleteTask', {task, boardId: $route.params.id})" title="delete")
-      button.btn-icon.btn-icon--close
+    textarea.input-self.input-self--task(:value="task.text" @change="text = $event.target.value" @blur="blur($event, task)" ref="textarea")
+
 
 </template>
 
@@ -27,13 +25,16 @@ export default {
       this.viewEdit = true
     },
     changeTextTask(task) {
-      if (!this.task.text) return
-      this.$store.commit('changeTask', { task, text: this.text, boardId: this.$route.params.id })
+      if (this.text) {
+        this.$store.commit('changeTask', { task, text: this.text, boardId: this.$route.params.id })
+      }
       this.viewEdit = false
     },
-    blur(e) {
-      if (!e.relatedTarget || !e.relatedTarget.classList.contains('dont-close'))
+    blur(e, task) {
+      if (!e.relatedTarget || !e.relatedTarget.classList.contains('dont-close')) {
+        this.changeTextTask(task)
         this.viewEdit = false
+      }
     },
   },
 }
@@ -73,4 +74,28 @@ export default {
   justify-content: flex-end
 .active
   font-weight: 600
+
+.btn-icon--del
+  width: 10px
+  height: 10px
+  position: relative
+  transform: rotate(45deg)
+  &:before
+    position: absolute
+    content: ""
+    width: 14px
+    height: 2px
+    top: 6px
+    left: 0px
+    background-color: #69665c
+    border-radius: 3px
+  &:after
+    position: absolute
+    content: ""
+    width: 2px
+    height: 14px
+    top: 0
+    left: 6px
+    background-color: #69665c
+    border-radius: 3px
 </style>

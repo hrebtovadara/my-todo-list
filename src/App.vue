@@ -82,7 +82,7 @@ export default {
   position: absolute
   top: -200px
   left: 20px
-  animation: fallingCat 25s infinite 1s
+  animation: fallingCat 45s infinite 20s
   animation-timing-function: cubic-bezier(0, .30, 1, .16)
   animation-direction: normal
   transform: rotate(-45deg)
@@ -91,13 +91,10 @@ export default {
     width: 200px
 
 @keyframes fallingCat
-
-  15%
+  5%
     top: 110%
   100%
     top: 110%
-
-
 
 @keyframes goCircleGreen
     25%
