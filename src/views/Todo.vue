@@ -14,7 +14,7 @@ div.board
         .cat-eyeball
       .cat-eyes.cat-eyes--right
         .cat-eyeball
-    img(src="@/assets/image/cat-meow.png" width="60px" :class="SayMeow? 'cat-meow': ''")
+    img(src="@/assets/image/cat-meow.png" width="60px" :class="SayMeow? 'cat-meow': 'cat-meow__not'")
 
 </template>
 
@@ -132,14 +132,16 @@ export default {
     top: 53px
     left: 113px
     animation: catsWink 6s infinite 4s
+.cat-meow__not
+  display: none
 .cat-meow
   position: absolute
+  display: block
   bottom: 280px
   right: 120px
   transform: rotate(20deg)
   opacity: 0
   animation: catSayMeow 2s
-
 .cat-eyeball
   position: absolute
   top: 4px
