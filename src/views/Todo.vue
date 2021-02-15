@@ -8,12 +8,13 @@ div.board
   .board__container
     AddNewList(:boardId="$route.params.id" ref="addNewList")
     List(v-for="list in Lists" :key="list.id" :list="list")
-    .board__img
-      img(src="@/assets/image/Screenshot.png" )
+    .board__img(@click="catSayMeow()")
+      img(src="@/assets/image/Screenshot.png" width="200px" height="200px")
       .cat-eyes.cat-eyes--left
         .cat-eyeball
       .cat-eyes.cat-eyes--right
         .cat-eyeball
+    img(src="@/assets/image/cat-meow.png" width="60px" :class="SayMeow? 'cat-meow': ''")
 
 </template>
 
@@ -25,6 +26,7 @@ export default {
   data: () => ({
     viewChangeBoard: false,
     nameBoard: '',
+    SayMeow: false,
   }),
   components: { List, AddNewList },
   computed: {
@@ -36,6 +38,10 @@ export default {
     },
   },
   methods: {
+    catSayMeow() {
+      this.SayMeow = true
+      setTimeout(() => (this.SayMeow = false), 2000)
+    },
     changeNameBoard(id) {
       if (!this.nameBoard) return
       this.$store.commit('changeNameBoard', { id, name: this.nameBoard })
@@ -111,9 +117,6 @@ export default {
     position: absolute
     bottom: 100px
     right: 100px
-    & img
-      width: 200px
-      height: 200px
 
 .cat-eyes
   position: absolute
@@ -124,11 +127,19 @@ export default {
   &--left
     top: 53px
     left: 85px
-    animation: catsWink 6s infinite .3s
+    animation: catsWink 6s infinite 4.3s
   &--right
     top: 53px
     left: 113px
-    animation: catsWink 6s infinite
+    animation: catsWink 6s infinite 4s
+.cat-meow
+  position: absolute
+  bottom: 280px
+  right: 120px
+  transform: rotate(20deg)
+  opacity: 0
+  animation: catSayMeow 2s
+
 .cat-eyeball
   position: absolute
   top: 4px
