@@ -82,7 +82,8 @@ export default {
   position: absolute
   top: -200px
   left: 20px
-  animation: fallingCat 25s linear infinite 10s
+  animation: fallingCat 25s infinite 1s
+  animation-timing-function: cubic-bezier(0, .30, 1, .16)
   animation-direction: normal
   transform: rotate(-45deg)
   z-index: 7
