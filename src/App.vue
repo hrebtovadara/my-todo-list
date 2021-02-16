@@ -1,8 +1,8 @@
 <template lang="pug">
 #app
   .container(ref="container")
-    Sidebar
-    router-view
+    Sidebar(v-if="(widthPage > 910) || viewMenu")
+    router-view(@viewMenu="viewMenu = !viewMenu")
   .circle-fon.circle-fon--green
   .circle-fon.circle-fon--blue
   .circle-fon.circle-fon--pink
@@ -14,15 +14,24 @@ import Sidebar from '@/components/Sidebar'
 
 export default {
   components: { Sidebar },
-  data: () => ({}),
+  data: () => ({
+    viewMenu: false,
+    widthPage: 0,
+  }),
+  methods: {
+    updateWidth() {
+      this.widthPage = window.innerWidth
+    },
+  },
   mounted() {
     console.log(JSON.stringify(this.$store.state.boards))
+    window.addEventListener('resize', this.updateWidth)
   },
 }
 </script>
 
 <style lang="sass">
-.app
+#app
   width: 100%
   height: 100vh
   padding: 10px
@@ -40,6 +49,12 @@ export default {
   margin: 90px
   position: relative
   box-shadow: 0 0 20px 0 rgba(0,0,0,0.3)
+  @media screen and ($mobile)
+    min-width: 340px
+    margin: 40px auto
+    width: 80%
+    height: 90vh
+
 .box-shadow
   position: absolute
   top: 0
@@ -54,6 +69,7 @@ export default {
   z-index: -1
   border-radius: 50%
   position: absolute
+
   &--green
     width: 800px
     height: 800px

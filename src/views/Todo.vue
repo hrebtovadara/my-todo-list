@@ -1,8 +1,9 @@
 <template lang="pug">
-div.board
+.board
   .board__title(v-if="!viewChangeBoard")
     p.board__title-text(@click="viewChangeBoard = true") {{boardName.name}}
     button.new-list__btn.dont-close(@click="$refs.addNewList.openAddList()")
+    button.btn-icon--menu.btn-menu.list__btn-menu(@click="$emit('viewMenu')")
   .board__title.opacity-btn(v-if="viewChangeBoard")
     input.board__title-text.input-self.input-self--board(:value="boardName.name" style="width: 100%" @input="nameBoard = $event.target.value" @blur="blur($event)" @keydown="KeyValue($event)" maxlength="72" v-focus)
   .board__container
@@ -89,14 +90,28 @@ export default {
   position: relative
   z-index: 3
   background-color: $color-white
+  @media screen and ($mobile)
+    padding: 20px
+    margin: 0
   &__container
     display: flex
     align-items: flex-start
-    overflow-x: auto
+    overflow: auto
     width: auto
     min-width: 620px
     height: 620px
-    margin-left: 260px
+    margin-left: 200px
+    @media screen and ($tablet)
+      flex-wrap: wrap
+      justify-content: flex-start
+      align-items: stretch
+
+    @media screen and ($mobile)
+
+      min-width: 300px
+      width: 100%
+      height: 620px
+      margin-left: 0px
 
   &__title
     display: flex
@@ -117,6 +132,9 @@ export default {
     position: absolute
     bottom: 100px
     right: 100px
+    @media screen and ($tablet)
+      display: none
+
 
 .cat-eyes
   position: absolute

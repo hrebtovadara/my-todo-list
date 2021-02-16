@@ -117,13 +117,17 @@ export default {
   min-height: 100px
   background-color: $color-light-yellow
   border-radius: 5px
-  margin: 30px 0 30px
-  margin-left: 20px
+  margin: 30px 0 30px 20px
   padding: 15px
   position: relative
   color: $color-brown
-  flex-basis: 300px
   min-width: 300px
+  @media screen and ($tablet)
+    margin: 30px 0 0 20px
+  @media screen and ($mobile)
+    margin: 10px auto
+    width: 90%
+    min-width: 280px
 
   &__btn
     position: absolute

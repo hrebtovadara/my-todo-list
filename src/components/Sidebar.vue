@@ -1,10 +1,11 @@
 <template lang="pug">
-div.nav
+.nav
   .nav__container
     router-link.nav__item.nav__item--home.nav__title(to="/home") home
     router-link.nav__item.nav__item--board(v-for="board in $store.state.boards" :to="'/board/' + board.id" )
       .circle(:style="'background-color:' + color[board.id]")
       p {{board.name}}
+      button.btn-icon.nav__btn-del(@click="$store.commit('deleteTask', {task, boardId: $route.params.id})")
     button.nav__item.nav__item--home(@click="newBoardView = true" style="color: #c6c4b9") Add new board +
   newBoard(v-if="newBoardView" @closePopup="closePopup")
 </template>
@@ -16,9 +17,9 @@ export default {
     newBoardView: false,
     color: {
       1: '#d2ceff',
-      2: '$color-light-blue',
-      3: '$color-light-pink:',
-      4: '$color-light-green',
+      2: '#ffcece',
+      3: '#fff9de',
+      4: '#daf2d6',
     },
   }),
   filters: {
@@ -48,6 +49,36 @@ export default {
   justify-content: space-between
   z-index: 4
   background: $color-white
+  @media screen and ($mobile)
+    width: 100%
+    min-height: 100px
+    margin-top: 60px
+    padding: 20px
+    align-items: flex-start
+
+  &__btn-del
+    width: 20px
+    height: 20px
+    position: relative
+    transform: rotate(45deg)
+    &:before
+      position: absolute
+      content: ""
+      width: 14px
+      height: 2px
+      top: 6px
+      left: 0px
+      background-color: $color-brown
+      border-radius: 3px
+    &:after
+      position: absolute
+      content: ""
+      width: 2px
+      height: 14px
+      top: 0
+      left: 6px
+      background-color: $color-brown
+      border-radius: 3px
 
   &__container
     display: flex
