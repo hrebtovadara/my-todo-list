@@ -21,6 +21,11 @@ export default {
   min-width: 600px
   border-radius: 10px
   margin: 60px
+  @media screen and ($mobile)
+    padding: 20px
+    min-width: 280px
+    margin: 0
+
   & img
     margin-bottom: 30px
   &__title
@@ -28,6 +33,11 @@ export default {
     font-size: 50px
     padding: 20px
     font-family: 'Clean', sans-serif
+    @media screen and ($mobile)
+      font-size: 30px
+      line-height: 30px
+      padding: 10px 0
+
 
   &__subtitle
     margin: 0 auto
@@ -35,17 +45,27 @@ export default {
     padding: 20px 0
     width: 650px
     font-family: 'Clean', sans-serif
+    @media screen and ($mobile)
+      font-size: 15px
+      width: 280px
+      padding: 10px 0
+
 
   &__container
     margin: 30px 0
     display: flex
     align-items: flex-start
     justify-content: center
+    flex-wrap: wrap
+    @media screen and ($mobile)
+      margin: 0
+
+
 
   &__board
     width: 180px
     height: 100px
-    background-color: white
+    background-color: $color-white
     margin: 30px 15px
     display: flex
     align-items: center
@@ -56,4 +76,9 @@ export default {
     padding: 20px
     &:hover
       background: #e3dec7
+    @media screen and ($mobile)
+      width: 60px
+      height: 60px
+      margin: 10px
+      font-size: 10px
 </style>
