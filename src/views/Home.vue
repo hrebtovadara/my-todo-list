@@ -60,8 +60,6 @@ export default {
     @media screen and ($mobile)
       margin: 0
 
-
-
   &__board
     width: 180px
     height: 100px

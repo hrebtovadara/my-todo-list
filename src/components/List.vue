@@ -127,7 +127,9 @@ export default {
   @media screen and ($mobile)
     margin: 10px auto
     width: 90%
-    min-width: 280px
+    min-width: 220px
+    padding: 5px
+
 
   &__btn
     position: absolute
@@ -186,6 +188,8 @@ export default {
     width: 260px
     overflow-y: auto
     max-height: 600px
+    @media screen and ($mobile)
+      width: auto
 
 
 

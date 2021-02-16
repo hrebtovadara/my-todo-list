@@ -105,10 +105,8 @@ export default {
       flex-wrap: wrap
       justify-content: flex-start
       align-items: stretch
-
     @media screen and ($mobile)
-
-      min-width: 300px
+      min-width: 220px
       width: 100%
       height: 620px
       margin-left: 0px
@@ -127,6 +125,9 @@ export default {
       display: flex
       align-items: center
       cursor: pointer
+      @media screen and ($mobile)
+         font-size: 18px
+
 
   &__img
     position: absolute

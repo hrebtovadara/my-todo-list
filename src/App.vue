@@ -50,8 +50,8 @@ export default {
   position: relative
   box-shadow: 0 0 20px 0 rgba(0,0,0,0.3)
   @media screen and ($mobile)
-    min-width: 340px
-    margin: 40px auto
+    min-width: 280px
+    margin: 20px auto
     width: 80%
     height: 90vh
 
@@ -69,7 +69,8 @@ export default {
   z-index: -1
   border-radius: 50%
   position: absolute
-
+  @media screen and ($mobile)
+    display: none
   &--green
     width: 800px
     height: 800px

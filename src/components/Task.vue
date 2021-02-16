@@ -1,10 +1,12 @@
 <template lang="pug">
 div.task
   .task__view(v-show="!viewEdit" :class="task.active? 'active' : ''")
-    input.checkbox(type="checkbox" :id="'checkbox-'+ task.id" :checked="task.active" @change="$store.commit('activeTask', {boardId: $route.params.id, task})")
-    label.label(:for="'checkbox-'+ task.id")
-    p.task__text(:style="'text-decoration:' + (task.active ? 'line-through': 'none')" @click="openChangeTask()")  {{task.text}}
-    button.btn-icon.btn-icon--del.dont-close(@click="$store.commit('deleteTask', {task, boardId: $route.params.id})" title="delete")
+    .task__info
+      input.checkbox(type="checkbox" :id="'checkbox-'+ task.id" :checked="task.active" @change="$store.commit('activeTask', {boardId: $route.params.id, task})")
+      label.label(:for="'checkbox-'+ task.id")
+      p.task__text(:style="'text-decoration:' + (task.active ? 'line-through': 'none')" @click="openChangeTask()")  {{task.text}}
+    .task__button
+      button.btn-icon.btn-icon--del.dont-close(@click="$store.commit('deleteTask', {task, boardId: $route.params.id})" title="delete")
   .task-edit(v-show="viewEdit")
     textarea.input-self.input-self--task(:value="task.text" @input="text = $event.target.value" @blur="blur($event, task)" ref="textarea" @keydown="KeyValue($event, task)")
 
@@ -54,6 +56,7 @@ export default {
   padding: 7px 0
   text-align: left
   position: relative
+
   &:hover
     font-weight: 600
   &__view
@@ -63,12 +66,21 @@ export default {
     min-height: 30px
     padding: 5px
 
+  &__info
+    display: flex
+    align-items: center
+    justify-content: flex-start
+
   &__text
     font-size: 14px
     width: 228px
     font-family: 'Clean', sans-serif
     min-height: 16px
     padding-top: 2px
+    @media screen and ($mobile)
+      min-width: 160px
+      width: auto
+
   &__edit
     width: 230px
 
