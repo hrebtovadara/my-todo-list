@@ -2,14 +2,15 @@
 .board
   .board__title(v-if="!viewChangeBoard")
     p.board__title-text(@click="viewChangeBoard = true") {{boardName.name}}
-    button.new-list__btn.dont-close(@click="$refs.addNewList.openAddList()")
-    button.btn-icon--menu.btn-menu.list__btn-menu(@click="$emit('viewMenu')")
+    .board__btn
+      button.new-list__btn.dont-close(@click="$refs.addNewList.openAddList()")
+      button.btn-icon--menu.btn-menu.list__btn-menu(v-if="widthPage < 910" @click="$emit('viewMenu')")
   .board__title.opacity-btn(v-if="viewChangeBoard")
     input.board__title-text.input-self.input-self--board(:value="boardName.name" style="width: 100%" @input="nameBoard = $event.target.value" @blur="blur($event)" @keydown="KeyValue($event)" maxlength="72" v-focus)
   .board__container
     AddNewList(:boardId="$route.params.id" ref="addNewList")
     List(v-for="list in Lists" :key="list.id" :list="list")
-    .board__img(@click="catSayMeow()")
+    .board__img(@click="catSayMeow()" v-if="widthPage > 1210")
       img(src="@/assets/image/Screenshot.png" width="200px" height="200px")
       .cat-eyes.cat-eyes--left
         .cat-eyeball
@@ -28,6 +29,7 @@ export default {
     viewChangeBoard: false,
     nameBoard: '',
     SayMeow: false,
+    widthPage: 0,
   }),
   components: { List, AddNewList },
   computed: {
@@ -62,6 +64,12 @@ export default {
         this.viewChangeBoard = false
       }
     },
+    updateWidth() {
+      this.widthPage = window.innerWidth
+    },
+  },
+  mounted() {
+    window.addEventListener('resize', this.updateWidth)
   },
   directives: {
     focus: {
@@ -91,7 +99,7 @@ export default {
   z-index: 3
   background-color: $color-white
   @media screen and ($mobile)
-    padding: 20px
+    padding: 0 10px
     margin: 0
   &__container
     display: flex
@@ -109,9 +117,17 @@ export default {
       flex-wrap: nowrap
       align-items: flex-start
       min-width: 220px
-      width: 100%
+      width: auto
       height: 620px
       margin-left: 0px
+      margin-right: 10px
+
+  &__btn
+    display: flex
+    align-items: center
+    justify-content: space-between
+    & .btn-icon--menu
+      transform: rotate(90deg)
 
   &__title
     display: flex
@@ -129,8 +145,6 @@ export default {
       cursor: pointer
       @media screen and ($mobile)
          font-size: 18px
-
-
   &__img
     position: absolute
     bottom: 100px

@@ -34,7 +34,8 @@ export default {
 #app
   width: 100%
   height: 100vh
-  padding: 10px
+  @media screen and ($mobile)
+    padding: 10px
 
 .container
   -webkit-font-smoothing: antialiased
