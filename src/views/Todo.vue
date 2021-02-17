@@ -106,6 +106,8 @@ export default {
       justify-content: flex-start
       align-items: stretch
     @media screen and ($mobile)
+      flex-wrap: nowrap
+      align-items: flex-start
       min-width: 220px
       width: 100%
       height: 620px

@@ -125,7 +125,7 @@ export default {
   @media screen and ($tablet)
     margin: 30px 0 0 20px
   @media screen and ($mobile)
-    margin: 10px auto
+    margin: 0 10px
     width: 90%
     min-width: 220px
     padding: 5px
