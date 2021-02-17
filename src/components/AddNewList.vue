@@ -55,6 +55,9 @@ export default {
     width: 20px
     height: 20px
     position: relative
+    @media screen and ($mobile)
+      width: 16px
+      height: 16px
     &:before
       position: absolute
       content: ""
@@ -64,6 +67,11 @@ export default {
       left: 0px
       background-color: $color-brown
       border-radius: 3px
+      @media screen and ($mobile)
+        width: 16px
+        height: 2px
+        top: 7px
+        left: 0px
     &:after
       position: absolute
       content: ""
@@ -73,4 +81,9 @@ export default {
       left: 8px
       background-color: $color-brown
       border-radius: 3px
+      @media screen and ($mobile)
+        width: 2px
+        height: 16px
+        top: 0
+        left: 7px
 </style>

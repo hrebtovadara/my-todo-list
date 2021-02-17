@@ -1,18 +1,17 @@
 <template lang="pug">
-.list(@mouseout="viewAddButton = true" @mouseleave="viewAddButton = false")
+.list
   .list__btn(v-show="viewMenu" @mouseleave="viewMenu = false")
+    p(@click="openAddTask") Add
     p(@click="openChangeTitle()") Edit...
     p(@click="$store.commit('deleteList', list)" ) Delete
   .list__title(v-show="!viewChangeTitle")
-    p.list__title--short(v-show="!viewTitleFull" @click="viewTitleFull = true") {{list.name.length > 20? list.name.slice(0, 20) + '...': list.name}}
-    p.list__title--full(v-show="viewTitleFull"  @click="viewTitleFull = false") {{list.name}}
+    p.list__title--full {{list.name}}
     button.btn-icon--menu.btn-menu.list__btn-menu(@click="viewMenu = true")
   .list__title-change.opacity-btn(v-show="viewChangeTitle")
     input.input-self.input-self--list(:value="list.name" @input="nameList = $event.target.value" @blur="blur($event)" @keydown="KeyValue($event)" ref="inputTitle" )
-    button.btn-icon.btn-icon--check.dont-close(@click="changeNameList(list)")
   draggable.list__task(v-model="myList" group="people" @start="drag=true" @end="drag=false")
     Task(v-for="task in myList" :key="task.id" :task="task")
-  button.btn.btn--add(v-show="!viewAdd && viewAddButton" @click="openAddTask" style="width: 100%") Add new task
+  button.btn.btn--add(v-show="widthPage < 910? (!viewAdd && widthPage < 910) : !viewAdd" @click="openAddTask" style="width: 100%") Add new task
   .list__task-add(v-show="viewAdd")
     textarea.input.input__list(v-model="newTask.text" @blur="blur($event)" ref="textarea2")
     .list__btn-add
@@ -29,7 +28,6 @@ export default {
   data: () => ({
     wide: true,
     viewAdd: false,
-    viewAddButton: false,
     viewChangeTitle: false,
     newTask: {
       id: '',
@@ -56,7 +54,7 @@ export default {
     },
   },
   components: { Task, draggable },
-  props: ['list'],
+  props: ['list', 'widthPage'],
   methods: {
     addNewTask(list) {
       if (!this.newTask.text) return
@@ -71,10 +69,9 @@ export default {
     },
     changeNameList(list) {
       if (this.nameList) {
-        console.log('123' + this.nameList)
-        this.$store.commit('changeList', { list: list, name: this.nameList })
-        this.viewChangeTitle = false
+        this.$store.commit('changeList', { list, name: this.nameList })
       }
+      this.viewChangeTitle = false
     },
     openAddTask() {
       setTimeout(() => this.$refs.textarea2.focus(), 10)
@@ -96,6 +93,7 @@ export default {
       if (e.code == 'Enter') {
         this.changeNameList(this.list)
         console.log('enter')
+        this.viewChangeTitle = false
       } else if (e.code == 'Escape') {
         this.viewChangeTitle = false
       }
@@ -125,7 +123,7 @@ export default {
   @media screen and ($tablet)
     margin: 30px 0 0 20px
   @media screen and ($mobile)
-    margin: 10px
+    margin: 10px 0 10px 10px
     width: auto
     min-width: 240px
     padding: 5px
@@ -192,8 +190,7 @@ export default {
     max-height: 600px
     @media screen and ($mobile)
       width: auto
-
-
+      max-height: 250px
 
 .list__btn-add
   display: flex

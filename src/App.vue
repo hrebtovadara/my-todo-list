@@ -2,7 +2,8 @@
 #app
   .container(ref="container")
     Sidebar(v-if="(widthPage > 910) || viewMenu")
-    router-view(@viewMenu="viewMenu = !viewMenu")
+    router-view
+    button.btn-icon--menu.btn-menu.container__menu(v-if="widthPage < 910" @click="viewMenu = !viewMenu")
   .circle-fon.circle-fon--green
   .circle-fon.circle-fon--blue
   .circle-fon.circle-fon--pink
@@ -16,7 +17,7 @@ export default {
   components: { Sidebar },
   data: () => ({
     viewMenu: false,
-    widthPage: 0,
+    widthPage: window.innerWidth,
   }),
   methods: {
     updateWidth() {
@@ -55,6 +56,15 @@ export default {
     margin: 20px auto
     width: 80%
     height: 90vh
+  &__menu
+    position: absolute
+    width: 20px
+    height: 20px
+    top: 25px
+    right: 0
+    z-index: 9
+    transform: rotate(90deg)
+
 
 .box-shadow
   position: absolute

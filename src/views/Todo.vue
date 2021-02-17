@@ -2,14 +2,12 @@
 .board
   .board__title(v-if="!viewChangeBoard")
     p.board__title-text(@click="viewChangeBoard = true") {{boardName.name}}
-    .board__btn
-      button.new-list__btn.dont-close(@click="$refs.addNewList.openAddList()")
-      button.btn-icon--menu.btn-menu.list__btn-menu(v-if="widthPage < 910" @click="$emit('viewMenu')")
+    button.new-list__btn.dont-close(@click="$refs.addNewList.openAddList()")
   .board__title.opacity-btn(v-if="viewChangeBoard")
     input.board__title-text.input-self.input-self--board(:value="boardName.name" style="width: 100%" @input="nameBoard = $event.target.value" @blur="blur($event)" @keydown="KeyValue($event)" maxlength="72" v-focus)
   .board__container
     AddNewList(:boardId="$route.params.id" ref="addNewList")
-    List(v-for="list in Lists" :key="list.id" :list="list")
+    List(v-for="list in Lists" :key="list.id" :list="list" :widthPage="widthPage")
     .board__img(@click="catSayMeow()" v-if="widthPage > 1210")
       img(src="@/assets/image/Screenshot.png" width="200px" height="200px")
       .cat-eyes.cat-eyes--left
@@ -29,7 +27,7 @@ export default {
     viewChangeBoard: false,
     nameBoard: '',
     SayMeow: false,
-    widthPage: 0,
+    widthPage: window.innerWidth,
   }),
   components: { List, AddNewList },
   computed: {
@@ -122,19 +120,13 @@ export default {
       margin-left: 0px
       margin-right: 10px
 
-  &__btn
-    display: flex
-    align-items: center
-    justify-content: space-between
-    & .btn-icon--menu
-      transform: rotate(90deg)
-
   &__title
     display: flex
     align-items: center
     justify-content: space-between
     height: 50px
-
+    @media screen and ($mobile)
+      margin: 10px 15px
     &-text
       color: $color-brown
       font-size: 28px

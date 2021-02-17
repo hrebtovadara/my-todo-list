@@ -56,6 +56,7 @@ export default {
   padding: 7px 0
   text-align: left
   position: relative
+  word-wrap:  break-word
 
   &:hover
     font-weight: 600

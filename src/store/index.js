@@ -32,7 +32,7 @@ export default new Vuex.Store({
         list: [
           {
             id: 1,
-            boardsId: 1,
+            boardId: 1,
             name: 'Мои делишки',
             tasks: [
               {
@@ -63,7 +63,7 @@ export default new Vuex.Store({
           },
           {
             id: 2,
-            boardsId: 1,
+            boardId: 1,
             name: 'Уход за человеком',
             icon: '',
             tasks: [
@@ -101,7 +101,7 @@ export default new Vuex.Store({
         list: [
           {
             id: 3,
-            boardsId: 2,
+            boardId: 2,
             name: 'В обозримом будущем',
             tasks: [
               {
@@ -152,7 +152,7 @@ export default new Vuex.Store({
       state.data.countLists++
     },
     changeList(state, { list, name }) {
-      searchIndex(state, { boardId: list.boardsId, listId: list.id }).name = name
+      searchIndex(state, { boardId: list.boardId, listId: list.id }).name = name
     },
     deleteList(state, list) {
       const { board, listIndex } = searchIndex(
