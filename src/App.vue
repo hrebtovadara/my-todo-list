@@ -35,6 +35,7 @@ export default {
 #app
   width: 100%
   height: 100vh
+  overflow: hidden
   @media screen and ($mobile)
     padding: 10px
 
@@ -80,8 +81,6 @@ export default {
   z-index: -1
   border-radius: 50%
   position: absolute
-  @media screen and ($mobile)
-    display: none
   &--green
     width: 800px
     height: 800px
@@ -89,6 +88,9 @@ export default {
     right: 20px
     bottom: 20px
     animation: goCircleGreen 50s linear infinite
+    @media screen and ($mobile)
+      width: 200px
+      height: 200px
   &--blue
     width: 1000px
     height: 1000px
@@ -96,6 +98,11 @@ export default {
     left: -250px
     top: -600px
     animation: goCircleBlue 50s linear infinite
+    @media screen and ($mobile)
+      width: 200px
+      height: 200px
+      left: 0px
+      top: 6px
   &--pink
     width: 600px
     height: 600px
@@ -103,4 +110,9 @@ export default {
     right: -50px
     top: -50px
     animation: goCirclePink 30s linear infinite
+    @media screen and ($mobile)
+      width: 200px
+      height: 200px
+      right: 0px
+      top: 50px
 </style>
