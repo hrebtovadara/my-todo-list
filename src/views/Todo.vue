@@ -108,11 +108,10 @@ export default {
     height: 620px
     margin-left: 200px
     @media screen and ($tablet)
-      flex-wrap: wrap
+
       justify-content: flex-start
-      align-items: stretch
     @media screen and ($mobile)
-      flex-wrap: nowrap
+
       align-items: flex-start
       min-width: 220px
       width: auto
