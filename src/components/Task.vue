@@ -69,7 +69,7 @@ export default {
 
   &__info
     display: flex
-    align-items: center
+    align-items: flex-start
     justify-content: flex-start
 
   &__text
@@ -77,7 +77,7 @@ export default {
     width: 228px
     font-family: 'Clean', sans-serif
     min-height: 16px
-    padding-top: 2px
+    padding-top: 1px
     @media screen and ($mobile)
       min-width: 160px
       width: auto
@@ -88,6 +88,8 @@ export default {
   & input
     margin: 0
     margin-right: 10px
+  &__button
+    margin-top: -5px
 
 .task__btn-change
   display: flex
