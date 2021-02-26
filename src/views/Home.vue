@@ -47,7 +47,7 @@ export default {
     font-family: 'Clean', sans-serif
     @media screen and ($mobile)
       font-size: 15px
-      width: 280px
+      width: 240px
       padding: 10px 0
 
 
